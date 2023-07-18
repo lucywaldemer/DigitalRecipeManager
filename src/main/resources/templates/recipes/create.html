@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+    <div class="form-group">
+        <label>Name
+            <input th:field="${recipe.name}" class="form-control">
+        </label>
+
+    </div>
+    <div class="form-group">
+        <label>Description
+            <input th:field="${recipe.description}" class="form-control">
+        </label>
+
+    </div>
+    <div class="form-group">
+        <label>Contact Email
+            <input th:field="${recipe.contactEmail}" class="form-control">
+        </label>
+
+    </div>
+    <div class="form-group">
+        <label>Meal Type
+            <select th:field="${recipe.mealType}">
+                <option th:each="mealType : ${mealTypes}"
+                        th:value="${mealType}"
+                        th:text="${mealType.displayMealName}"
+                ></option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Cuisine Type
+            <select th:field="${recipe.cuisineType}">
+                <option th:each="cuisineType : ${cuisineTypes}"
+                        th:value="${cuisineType}"
+                        th:text="${cuisineType.displayCuisineName}"
+                ></option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Diet Type
+            <select th:field="${recipe.dietType}">
+                <option th:each="dietType : ${dietTypes}"
+                        th:value="${dietType}"
+                        th:text="${dietType.displayDietName}"
+                ></option>
+            </select>
+        </label>
+    </div>
+    <!--div class="form-group">
+        <label>Ingredients
+            <input th:field="${recipe.ingredients}" class="form-control">
+        </label>
+
+    </div-->
+
+    <div class="form-group">
+        <label>Cooking Time
+            <input th:field="${recipe.cookingTime}" class="form-control">
+        </label>
+
+    </div>
+    <div class="form-group">
+        <input type="submit"    value="Create Recipe" class="btn btn-success">
+    </div>
+</form>
+
+</body>
+</html>

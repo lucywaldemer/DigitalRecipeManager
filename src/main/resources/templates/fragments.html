@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:faragment="head">
+    <meta charset="UTF-8"/>
+    <title>Recipes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <title th:text="'Digital Recipe Manager' + ${title == null ? '' : ' :: ' + title}">Digital Recipe Manager</title>
 
-<head th:fragment="head">
-
-    <!-- Bootstrap stylesheets and script -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link th:href="@{/css/techjobs.css}" rel="stylesheet" />
-    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
-
-    <title th:text="'Digital Recipe Manager' + ${title == null ? '' : ' :: ' + title}">TechJobs</title>
 </head>
+<body>
+<nav th:fragment="header">
+    <h1 th:text="${title}">Recipes</h1>
+    <ul class="nav">
+        <li class="nav-item"><a class="nav-link" href="/recipes">All Recipes</a></li>
+        <li class="nav-item"><a class="nav-link" href="/recipes/create">Create Recipe</a></li>
+        <li class="nav-item"><a class="nav-link" href="/recipes/delete">Delete Recipe</a></li>
 
+    </ul>
+</nav>
+
+</body>
 </html>
