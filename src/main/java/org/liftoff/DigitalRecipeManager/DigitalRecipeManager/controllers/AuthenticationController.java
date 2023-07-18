@@ -1,5 +1,6 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.AuthenticationFilter;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.User;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.UserRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto.LoginFormDTO;
@@ -22,6 +23,7 @@ public class AuthenticationController {
     @Autowired
     UserRepository userRepository;
 
+
     private static final String userSessionKey = "user";
 
     public User getUserFromSession(HttpSession session) {
@@ -41,6 +43,13 @@ public class AuthenticationController {
 
     private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
+    }
+
+    @GetMapping
+    public String displayHomepage(Model model, HttpServletRequest request) {
+        String username = getUserFromSession(request.getSession()).getUsername();
+        model.addAttribute("username", username);
+        return "/index";
     }
 
     @GetMapping("/register")
