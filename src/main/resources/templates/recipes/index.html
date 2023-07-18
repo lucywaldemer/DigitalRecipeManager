@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+
+<header th:replace="fragments :: header"></header>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Contact Email</th>
+        <th>Meal Type</th>
+        <th>Cuisine Type</th>
+        <th>Diet Type</th>
+        <!--th>Ingredients</th-->
+        <th>Cooking Time</th>
+        <th>Actions</th>
+
+    </tr>
+    </thead>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.id}"></td>
+        <td th:text="${recipe.name}"></td>
+        <td th:text="${recipe.description}"></td>
+        <td th:text="${recipe.contactEmail}"></td>
+        <td th:text="${recipe.mealType.displayMealName}"></td>
+        <td th:text="${recipe.cuisineType.displayCuisineName}"></td>
+        <td th:text="${recipe.dietType.displayDietName}"></td>
+        <!--td th:text="${recipe.ingredients}"></td-->
+        <td th:text="${recipe.cookingTime}"></td>
+
+        <td>
+            <a th:href="@{/recipes/edit/{id}(id=${recipe.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
