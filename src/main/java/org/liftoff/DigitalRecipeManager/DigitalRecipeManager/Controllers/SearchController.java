@@ -1,6 +1,8 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Controllers;
 
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.Recipe;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.RecipeData;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +30,7 @@ public class SearchController {
     public String displaySearchResults(Model model, @RequestParam String category) {
         List<Recipe> recipes;
         if (category.equalsIgnoreCase("all")) {
-            recipes = recipeRepository.findAll();
+            recipes = (List<Recipe>) recipeRepository.findAll();
         } else {
             recipes = recipeRepository.findByCategory(category);
         }

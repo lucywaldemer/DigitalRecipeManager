@@ -1,11 +1,14 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Controllers;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.AbstractEntity;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.Recipe;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+//import javax.validation.Valid;
 
 import java.util.Optional;
 
@@ -31,7 +34,7 @@ public class HomeController {
     }
 
     @PostMapping("/recipes/add")
-    public String processAddRecipeForm(@ModelAttribute @Valid Recipe newRecipe,
+    public String processAddRecipeForm(@ModelAttribute Recipe newRecipe,
                                        Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Recipe");

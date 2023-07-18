@@ -1,9 +1,7 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import java.util.List;
 
 @Entity
 public class Recipe extends AbstractEntity {
@@ -15,6 +13,18 @@ public class Recipe extends AbstractEntity {
 
     public Recipe() {
     }
+
+    @Column(nullable = false)
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
 
     public String getTitle() {
         return title;
@@ -47,5 +57,6 @@ public class Recipe extends AbstractEntity {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
 }
 

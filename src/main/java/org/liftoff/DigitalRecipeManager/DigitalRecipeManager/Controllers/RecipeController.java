@@ -1,7 +1,7 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Controllers;
 
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.AbstractEntity;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.Recipe;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import java.util.Optional;
     public class RecipeController {
 
         @Autowired
-        private AbstractEntity.RecipeRepository recipeRepository;
+        private RecipeRepository recipeRepository;
 
         @GetMapping("")
         public String index(Model model) {
@@ -33,7 +33,7 @@ import java.util.Optional;
         }
 
         @PostMapping("add")
-        public String processAddRecipeForm(@ModelAttribute @Valid Recipe newRecipe,
+        public String processAddRecipeForm(@ModelAttribute Recipe newRecipe,
                                            Errors errors, Model model) {
             if (errors.hasErrors()) {
                 model.addAttribute("title", "Add Recipe");

@@ -35,9 +35,4 @@ public abstract class AbstractEntity {
         return Objects.hash(id);
     }
 
-    @Repository
-    public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
-        List<Recipe> findByCategory(String category);
-        List<Recipe> findAll();
-    }
 }
