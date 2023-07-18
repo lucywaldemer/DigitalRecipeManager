@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div class="container body-content">
+  <h2>Digital Recipe Manager</h2>
+  <p th:text="${username == null} ? 'You are not logged in' : 'Welcome, ' + ${username}"></p>
+</div>
+
+</body>
+</html>
