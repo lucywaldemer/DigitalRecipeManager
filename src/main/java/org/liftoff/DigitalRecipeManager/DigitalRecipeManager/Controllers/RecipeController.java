@@ -1,5 +1,6 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Controllers;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.AbstractEntity;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ import java.util.Optional;
     public class RecipeController {
 
         @Autowired
-        private RecipeRepository recipeRepository;
+        private AbstractEntity.RecipeRepository recipeRepository;
 
         @GetMapping("")
         public String index(Model model) {
@@ -54,4 +55,4 @@ import java.util.Optional;
             }
         }
     }
-}
+
