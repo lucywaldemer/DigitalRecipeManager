@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
     @Controller
-    @RequestMapping("recipes")
+//    @RequestMapping("recipes")
     public class RecipeController {
 
         @Autowired
@@ -51,7 +51,7 @@ import java.util.Optional;
                 model.addAttribute("recipe", recipe);
                 return "recipes/view";
             } else {
-                return "redirect:../";
+                return "redirect../";
             }
         }
     }
