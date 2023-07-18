@@ -1,6 +1,5 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
-
 import com.sun.istack.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -35,5 +34,3 @@ public class User extends AbstractEntity {
 
 
 }
-
-
