@@ -1,6 +1,5 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.AuthenticationFilter;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.User;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.UserRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto.LoginFormDTO;
