@@ -45,7 +45,7 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String displayHomepage(Model model, HttpServletRequest request) {
         String username = getUserFromSession(request.getSession()).getUsername();
         model.addAttribute("username", username);

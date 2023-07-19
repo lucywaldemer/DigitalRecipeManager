@@ -1,15 +1,24 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Recipe {
+@Entity
+public class Recipe extends AbstractEntity{
 
-    private int id;
-    private static int nextId = 1;
+//    private int id;
+//    private static int nextId = 1;
     private String name;
     private String description;
     private String contactEmail;
-    //private List<String> ingredients;
+    @ManyToMany
+    private List<Ingredient> ingredients = new ArrayList<>();
     private MealType mealType;
     private DietType dietType;
     private CuisineType cuisineType;
@@ -26,14 +35,13 @@ public class Recipe {
         this.mealType = mealType;
         this.cuisineType = cuisineType;
         this.dietType = dietType;
-        //this.ingredients = ingredients;
         this.cookingTime = cookingTime;
 
     }
 
     public Recipe() {
-        this.id = nextId;
-        nextId++;
+//        this.id = nextId;
+//        nextId++;
     }
 
     public String getName() {
@@ -60,9 +68,9 @@ public class Recipe {
         this.contactEmail = contactEmail;
     }
 
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 
     public MealType getMealType() {
         return mealType;
@@ -89,14 +97,14 @@ public class Recipe {
     }
 
 
-    /*public List<String> getIngredients() {
+    public List<Ingredient> getIngredients() {
 
         return ingredients;
     }
 
-    public void setIngredients(List<String> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
-    }*/
+    }
 
 
     public int getCookingTime() {
@@ -112,18 +120,18 @@ public class Recipe {
         return name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Recipe recipe = (Recipe) o;
-        return id == recipe.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Recipe recipe = (Recipe) o;
+//        return id == recipe.id;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id);
+//    }
 }
 
 

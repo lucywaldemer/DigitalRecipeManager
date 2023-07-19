@@ -1,10 +1,13 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.controllers;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.data.RecipeData;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models.CuisineType;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models.DietType;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models.MealType;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models.Recipe;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.IngredientRepository;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeData;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.CuisineType;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.DietType;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.MealType;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Recipe;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +18,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("recipes")
 public class RecipeController {
 
-    @GetMapping
+    @Autowired
+    IngredientRepository ingredientRepository;
+
+    @Autowired
+    RecipeRepository recipeRepository;
+
+    @GetMapping("")
     public String displayAllRecipes(Model model)    {
         model.addAttribute("title","All Recipes");
-        model.addAttribute("recipes", RecipeData.getAll());
+        model.addAttribute("recipes", recipeRepository.findAll());
         return "recipes/index";
     }
     @GetMapping("create")
@@ -28,6 +37,7 @@ public class RecipeController {
         model.addAttribute("mealTypes", MealType.values());
         model.addAttribute("cuisineTypes", CuisineType.values());
         model.addAttribute("dietTypes", DietType.values());
+        model.addAttribute("ingredients", ingredientRepository.findAll());
         return "recipes/create";
     }
 
@@ -35,7 +45,7 @@ public class RecipeController {
     public String processCreateRecipeForm(@ModelAttribute Recipe newRecipe, Model model)    {
 
         model.addAttribute("title", "Create Recipe");
-        RecipeData.add(newRecipe);
+        recipeRepository.save(newRecipe);
         return "redirect:";
     }
     @GetMapping("delete")

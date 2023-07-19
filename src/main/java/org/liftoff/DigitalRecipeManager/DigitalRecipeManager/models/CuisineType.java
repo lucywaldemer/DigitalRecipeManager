@@ -1,4 +1,4 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
 public enum CuisineType {
     CHINESE("Chinese"),
