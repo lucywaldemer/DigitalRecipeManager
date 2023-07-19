@@ -1,12 +1,8 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models;
-
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.List;
 import java.util.Objects;
 
 @MappedSuperclass
@@ -16,11 +12,11 @@ public abstract class AbstractEntity {
     @GeneratedValue
     private int id;
 
+
     public int getId() {
         return id;
     }
 
-    // Override equals() and hashCode() methods
 
     @Override
     public boolean equals(Object o) {
@@ -34,5 +30,4 @@ public abstract class AbstractEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 }
