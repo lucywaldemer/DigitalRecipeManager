@@ -1,9 +1,24 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title></title>
 </head>
 <body>
+<h1>My Profile</h1>
+// posts username
+<!--<p th:text = "Username: ${username}"> </p>-->
+// creates user form to add a file
+<form th:action="@{/users/save}"
+      th:object="${user}" method="post"
+      enctype="multipart/form-data">
+    <div>
+        <label>Photos: </label>
+        // restricts that only image files can be uploaded
+        <input type="file" name="image" accept="image/png, image/jpeg, image/pdf" />
+        <img th:src="/@{${user.photosImagePath}}" />
+    </div>
+</form>
 
 </body>
 </html>

@@ -1,34 +1,30 @@
-//package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//
-//@Controller
-//@RequestMapping("user")
-//public class UserController {
-//
-//    @GetMapping("/add")
-//    public String displayAddUserForm() {
-//        return "user/add";
-//    }
-//
-//    @PostMapping
-//    public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
-//        model.addAttribute("user", user);
-//        model.addAttribute("verify", verify);
-//        model.addAttribute("username", user.getUsername());
-//        model.addAttribute("id", user.getId());
-//        if (user.getPassword().equals(verify)) {
-//            return "user/index";
-//        } else {
-//            model.addAttribute("error", "Passwords do not match");
-//            return "user/add";
-//        }
-//
-//    }
-//}
-//
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
+
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.User;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.FileUploadUtil;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.io.IOException;
+
+@Controller
+public class UserController {
+    @Autowired
+    private UserRepository repo;
+    @PostMapping("/users/save")
+    public RedirectView saveUser(User user,
+                                 @RequestParam("image") MultipartFile multipartFile) throws IOException {
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        user.setPhotos(fileName);
+        User savedUser = repo.save(user);
+        String uploadDir = "user-photos/" + savedUser.getId();
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        return new RedirectView("/users", true);
+    }
+}
+
