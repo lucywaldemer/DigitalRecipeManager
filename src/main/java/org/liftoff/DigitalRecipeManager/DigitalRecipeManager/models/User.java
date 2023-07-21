@@ -11,9 +11,7 @@ import javax.persistence.*;
 // stores a file name for photos
 @Table(name = "users")
 public class User extends AbstractEntity {
-    // generates a user id for each user
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // needs getters and setters
+    // use ID comes from AbstractEntity
 // stores the photo containing up to 64 characters
     @Column(nullable = true, length = 64)
     private String photos;
@@ -62,5 +60,9 @@ public class User extends AbstractEntity {
     }
 // allows user to upload photos. Saves the name
     public void setPhotos(String fileName) {
+    }
+
+    public String getPassword() {
+        return pwHash;
     }
 }
