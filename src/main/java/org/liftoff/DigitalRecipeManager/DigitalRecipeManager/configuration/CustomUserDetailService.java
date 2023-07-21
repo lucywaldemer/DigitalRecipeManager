@@ -1,7 +1,7 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.configuration;
 
-import com.javadevjournal.jpa.entities.CustomerEntity;
-import com.javadevjournal.jpa.repository.CustomerRepository;
+import com.javadevjournal.jpa.entities.UserEntity;
+import com.javadevjournal.jpa.repository.UserRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -22,7 +22,7 @@ public class CustomUserDetailService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
-            User user = User.withUsername(user.getUsername()).password(user.getPassword()).authorities("USER").build();
+            UserDetails user = User.withUsername(user.getUsername()).password(user.getPassword()).authorities("USER").build();
             return user;
     }
 }
