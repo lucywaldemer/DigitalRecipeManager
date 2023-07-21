@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<!-- Search Form -->
+<!-- search form -->
 <form th:action="@{/search}" th:object="${searchForm}" method="post">
   <label for="ingredient">Ingredient:</label>
   <input type="text" id="ingredient" th:field="*{ingredient}" />

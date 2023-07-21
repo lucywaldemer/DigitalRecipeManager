@@ -1,4 +1,5 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
