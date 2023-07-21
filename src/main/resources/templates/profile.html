@@ -7,7 +7,7 @@
 <body>
 <h1>My Profile</h1>
 // posts username
-<!--<p th:text = "Username: ${username}"> </p>-->
+<span th:text = "'Username: ' + ${username}"> </span>
 // creates user form to add a file
 <form th:action="@{/users/save}"
       th:object="${user}" method="post"
