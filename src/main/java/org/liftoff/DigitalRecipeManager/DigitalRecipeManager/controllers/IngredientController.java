@@ -1,6 +1,7 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Ingredient;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Service.RecipeService;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,12 @@ public class IngredientController {
 
     @Autowired
     IngredientRepository ingredientRepository;
-
+    @Autowired
+    private RecipeService recipeService;
+    @GetMapping("/all")
+    public Ingredient[] getAllIngredients() {
+        return recipeService.findAllIngredients();
+    }
     @GetMapping("add")
     public String displayAddIngredientForm(Model model) {
         model.addAttribute("title", "Add Ingredient");

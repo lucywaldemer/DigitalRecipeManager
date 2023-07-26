@@ -1,20 +1,17 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Service.RecipeService;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.*;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.IngredientRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeData;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.CuisineType;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.DietType;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.MealType;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Recipe;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
 
-@Controller
+@RestController
 @RequestMapping("recipes")
 public class RecipeController {
 
@@ -23,7 +20,18 @@ public class RecipeController {
 
     @Autowired
     RecipeRepository recipeRepository;
+    @Autowired
+    private RecipeService recipeService;
 
+    public RecipeController(IngredientRepository ingredientRepository, RecipeService recipeService) {
+        this.ingredientRepository = ingredientRepository;
+        this.recipeService = recipeService;
+    }
+
+    @GetMapping
+    public Object[] getAllRecipes() {
+        return  recipeService.findRecipeByMeal();
+    }
     @GetMapping("")
     public String displayAllRecipes(Model model)    {
         model.addAttribute("title","All Recipes");
