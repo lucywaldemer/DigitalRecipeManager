@@ -1,7 +1,13 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.CuisineType;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.DietType;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.MealType;
+
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
 public class Recipe {
 
     private int id;
@@ -117,7 +123,7 @@ public class Recipe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return id == recipe.id;
+        return id == recipe.getId();
     }
 
     @Override
@@ -125,7 +131,3 @@ public class Recipe {
         return Objects.hash(id);
     }
 }
-
-
-
-

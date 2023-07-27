@@ -53,12 +53,17 @@
             </select>
         </label>
     </div>
-    <!--div class="form-group">
-        <label>Ingredients
-            <input th:field="${recipe.ingredients}" class="form-control">
-        </label>
+    <div class="form-group">
+        <div style="background-color: #aaa; overflow: auto">
+            <label th:for="ingredients">Add Ingredients</label>
+            <th:block th:each="ingredient : ${ingredients}">
+                <input type="checkbox" name="ingredients" th:value="${ingredient.id}" class="form-control">
+                <label th:text="${ingredient.name}"></label>
+            </th:block>
+            <a th:href="@{'/ingredients/add'}">Add New Ingredient</a>
+        </div>
 
-    </div-->
+    </div>
 
     <div class="form-group">
         <label>Cooking Time

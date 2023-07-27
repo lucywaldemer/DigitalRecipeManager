@@ -1,16 +1,11 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.data;
-
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models.Recipe;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-
-import java.util.*;
-
 public class RecipeData {
-    private static final Map<Integer, Recipe> recipes = new HashMap<>();
+    public static final Map<Integer, Recipe> recipes = new HashMap<>();
 
     public static void add(Recipe recipe)   {
         recipes.put(recipe.getId(), recipe);
@@ -31,4 +26,3 @@ public class RecipeData {
 
 
 }
-
