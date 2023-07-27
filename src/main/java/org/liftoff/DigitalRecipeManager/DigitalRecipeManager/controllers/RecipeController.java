@@ -1,14 +1,14 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.controllers;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.data.RecipeData;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models.CuisineType;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models.DietType;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models.MealType;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models.Recipe;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.*;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.*;
 public class RecipeController {
 
     @GetMapping
-    public String displayAllRecipes(Model model)    {
-        model.addAttribute("title","All Recipes");
+    public String displayAllRecipes(Model model) {
+        model.addAttribute("title", "All Recipes");
         model.addAttribute("recipes", RecipeData.getAll());
         return "recipes/index";
     }
+
     @GetMapping("create")
-    public String displayCreateRecipeForm(Model model)  {
+    public String displayCreateRecipeForm(Model model) {
         model.addAttribute("title", "Create Recipe");
         model.addAttribute(new Recipe());
         model.addAttribute("mealTypes", MealType.values());
@@ -32,12 +33,16 @@ public class RecipeController {
     }
 
     @PostMapping("create")
-    public String processCreateRecipeForm(@ModelAttribute Recipe newRecipe, Model model)    {
+    public String processCreateRecipeForm(@ModelAttribute @Valid Recipe newRecipe,
+                                          Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Create Recipe");
+            return "recipes/create";
+        }
+            RecipeData.add(newRecipe);
+            return "redirect:";
+        }
 
-        model.addAttribute("title", "Create Recipe");
-        RecipeData.add(newRecipe);
-        return "redirect:";
-    }
     @GetMapping("delete")
     public String displayDeleteRecipeForm(Model model)   {
         model.addAttribute("title", "Delete Recipe");
@@ -62,13 +67,17 @@ public class RecipeController {
         return "recipes/edit";
     }
     @PostMapping("edit")
-    public String processEditRecipeForm(int recipeId, String name, String description,String contactEmail) {
+    public String processEditRecipeForm(int recipeId, String name, String description,
+                                        String contactEmail, int cookingTime,
+                                        String instructions, String createdBy) {
         Recipe recipeToEdit = RecipeData.getById(recipeId);
         recipeToEdit.setName(name);
         recipeToEdit.setDescription(description);
-        recipeToEdit.setContactEmail(contactEmail);
+        //recipeToEdit.setContactEmail(contactEmail);
         //recipeToEdit.setIngredients(ingredients);
-        //recipeToEdit.setCookingTime(cookingTime);
+        recipeToEdit.setCookingTime(cookingTime);
+        recipeToEdit.setInstructions(instructions);
+        recipeToEdit.setCreatedBy(createdBy);
         return "redirect:";
     }
 

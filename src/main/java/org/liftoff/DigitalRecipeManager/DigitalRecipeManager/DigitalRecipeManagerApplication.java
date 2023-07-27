@@ -1,4 +1,4 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

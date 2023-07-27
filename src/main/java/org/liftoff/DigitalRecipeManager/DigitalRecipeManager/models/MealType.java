@@ -1,4 +1,4 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.Models.models;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
 
 public enum MealType {
@@ -21,4 +21,5 @@ public enum MealType {
     public String getDisplayMealName() {
         return displayMealName;
     }
+
 }
