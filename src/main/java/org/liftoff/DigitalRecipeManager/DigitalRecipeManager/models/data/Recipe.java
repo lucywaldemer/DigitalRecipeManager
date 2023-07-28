@@ -1,54 +1,39 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.CuisineType;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.DietType;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.MealType;
 
-import javax.validation.constraints.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
 import java.util.Objects;
 
-
-
+@Entity
 public class Recipe {
 
     private int id;
     private static int nextId = 1;
-    @Size(min=3, max=50, message= "Name must be between 3 and 50 characters!")
-    @NotBlank(message = "Name is required!")
     private String name;
-    @Size(max=500, message= "Description is too long!")
-    @NotBlank(message = "Description is required!")
     private String description;
-    //@Email(message = "Invalid email.Try again!")
-    //@NotBlank(message = "Email is required!")
-    //private String contactEmail;
-    //private List<Ingredient> ingredients;
+    private String contactEmail;
+    //private List<String> ingredients;
     private MealType mealType;
     private DietType dietType;
     private CuisineType cuisineType;
-    @NotNull(message= "Cooking time is required!")
     private int cookingTime;
-    @Size(min=10, max=500, message= "instructions must be between 10 and 500 characters")
-    @NotBlank(message= "Instructions is required!")
-    private String instructions;
-    @Size(min=3, max=50)
-    @NotBlank(message= "Required!")
-    private String createdBy;
 
 
 
-    public Recipe(String name, String description, MealType mealType,
-                  DietType dietType,CuisineType cuisineType, int cookingTime,
-                  String instructions, String createdBy ) {
+    public Recipe(String name, String description,String contactEmail, MealType mealType,
+                  CuisineType cuisineType, DietType dietType, int cookingTime) {
         this();
         this.name = name;
         this.description = description;
-        //this.contactEmail = contactEmail;
+        this.contactEmail = contactEmail;
         this.mealType = mealType;
         this.cuisineType = cuisineType;
         this.dietType = dietType;
+        //this.ingredients = ingredients;
         this.cookingTime = cookingTime;
-        this.instructions = instructions;
-        this.createdBy = createdBy;
 
     }
 
@@ -73,13 +58,13 @@ public class Recipe {
         this.description = description;
     }
 
-    /*public String getContactEmail() {
+    public String getContactEmail() {
         return contactEmail;
     }
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
-    }*/
+    }
 
     public int getId() {
         return id;
@@ -109,17 +94,15 @@ public class Recipe {
         this.dietType = dietType;
     }
 
-    /*
-    public List<Ingredient> getIngredients() {
+
+    /*public List<String> getIngredients() {
 
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
-    }
-
-     */
+    }*/
 
 
     public int getCookingTime() {
@@ -130,34 +113,17 @@ public class Recipe {
         this.cookingTime = cookingTime;
     }
 
-    public String getInstructions() {
-        return instructions;
-    }
-
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
     @Override
     public String toString() {
         return name;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return id == recipe.id;
+        return id == recipe.getId();
     }
 
     @Override
@@ -165,7 +131,3 @@ public class Recipe {
         return Objects.hash(id);
     }
 }
-
-
-
-

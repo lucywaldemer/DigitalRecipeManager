@@ -2,27 +2,45 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
+
 <header th:replace="fragments :: header"></header>
+<p th:text = "${errorMsg}"  style="color:red"></p>
 
 <form method="post">
-    <div class="form-group">
+
+    <div class="form floating">
+        <input th:field="${recipe.name}" class="form-control"
+        aria-describedby="nameHelp" placeholder="Name">
+        <p class="error"    th:errors="${recipe.name}"></p>
+    </div>
+    <!--div class="form-group">
         <label>Name
             <input th:field="${recipe.name}" class="form-control">
         </label>
-
-    </div>
-    <div class="form-group">
+        <p class="error"    th:errors="${recipe.name}"></p>
+    </div-->
+    <br>
+    <!--div class="form-group">
         <label>Description
-            <input th:field="${recipe.description}" class="form-control">
+            <input th:field="${recipe.description}" id="name" class="form-control">
         </label>
-
+        <p class="error"    th:errors="${recipe.description}"></p>
     </div>
-    <div class="form-group">
+    <br-->
+    <div class="form floating">
+        <input th:field="${recipe.description}" class="form-control"
+               aria-describedby="descriptionHelp"   placeholder="Description">
+        <p class="error"    th:errors="${recipe.description}"></p>
+    </div>
+
+    <!--div class="form-group">
         <label>Contact Email
             <input th:field="${recipe.contactEmail}" class="form-control">
         </label>
+        <p class="error"    th:errors="${recipe.contactEmail}"></p>
+    </div-->
 
-    </div>
+    <br>
     <div class="form-group">
         <label>Meal Type
             <select th:field="${recipe.mealType}">
@@ -33,6 +51,7 @@
             </select>
         </label>
     </div>
+    <br>
     <div class="form-group">
         <label>Cuisine Type
             <select th:field="${recipe.cuisineType}">
@@ -43,6 +62,7 @@
             </select>
         </label>
     </div>
+    <br>
     <div class="form-group">
         <label>Diet Type
             <select th:field="${recipe.dietType}">
@@ -53,24 +73,62 @@
             </select>
         </label>
     </div>
-    <div class="form-group">
-        <div style="background-color: #aaa; overflow: auto">
-            <label th:for="ingredients">Add Ingredients</label>
-            <th:block th:each="ingredient : ${ingredients}">
-                <input type="checkbox" name="ingredients" th:value="${ingredient.id}" class="form-control">
-                <label th:text="${ingredient.name}"></label>
-            </th:block>
-            <a th:href="@{'/ingredients/add'}">Add New Ingredient</a>
-        </div>
+Senay
+    <br>
+    <!--div class="form-group">
+    <div style="background-color: #aaa; overflow: auto">
+        <label th:for="ingredients">Add Ingredients</label>
+        <th:block th:each="ingredient : ${ingredients}">
+            <input type="checkbox" name="ingredients" th:value="${ingredient.id}" class="form-control">
+            <label th:text="${ingredient.name}"></label>
+        </th:block>
+        <a th:href="@{'/ingredients/add'}">Add New Ingredient</a>
 
     </div>
+    </div-->
+    <!--div class="form-group">
 
-    <div class="form-group">
         <label>Cooking Time
             <input th:field="${recipe.cookingTime}" class="form-control">
         </label>
+        <p class="error"    th:errors="${recipe.cookingTime}"></p>
+    </div-->
+
+    <div class="form floating">
+        <div class="col">Column Six</div>
+    <input th:field="${recipe.cookingTime}" class="form-control"
+           aria-describedby="cookingTimeHelp" placeholder="Cooking Time">
+    <p class="error"    th:errors="${recipe.cookingTime}"></p>
+    </div>
+    <br>
+
+    <div class="form floating">
+        <input th:field="${recipe.instructions}" class="form-control"
+               aria-describedby="instructionsHelp" placeholder="Instructions">
+        <p class="error"    th:errors="${recipe.instructions}"></p>
+    </div>
+    <br>
+
+    <!--div class="form-group">
+        <label>Instructions
+            <input th:field="${recipe.instructions}" class="form-control">
+        </label>
+        <p class="error"    th:errors="${recipe.instructions}"></p>
+    </div>
+    <br-->
+    <!--div class="form-group">
+        <label>Created By
+            <input th:field="${recipe.createdBy}" class="form-control">
+        </label>
+        <p class="error"    th:errors="${recipe.createdBy}"></p>
+    </div-->
+    <div class="form floating">
+        <input th:field="${recipe.createdBy}" class="form-control"
+        aria-describedby="createdByHelp" placeholder="Created By">
+        <p class="error"    th:errors="${recipe.createdBy}"></p>
 
     </div>
+    <br>
     <div class="form-group">
         <input type="submit"    value="Create Recipe" class="btn btn-success">
     </div>
