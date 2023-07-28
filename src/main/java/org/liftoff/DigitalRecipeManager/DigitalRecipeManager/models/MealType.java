@@ -21,5 +21,4 @@ public enum MealType {
     public String getDisplayMealName() {
         return displayMealName;
     }
-
 }

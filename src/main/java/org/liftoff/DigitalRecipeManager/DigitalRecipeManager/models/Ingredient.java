@@ -1,5 +1,6 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
+Senay
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Ingredient {
         this();
         this.name = name;
     }
+  
     public Ingredient() {
         this.id = nextId;
         nextId++;
@@ -21,7 +23,6 @@ public class Ingredient {
     public int getId() {
         return id;
     }
-
 
     public String getName() {
         return name;
@@ -36,4 +37,11 @@ public class Ingredient {
     }
 
 
+    public void addRecipe(Recipe recipe) {this.recipes.add(recipe);}
+
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
