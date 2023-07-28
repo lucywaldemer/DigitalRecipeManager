@@ -8,16 +8,19 @@
 
 <table class="table table-striped">
     <thead>
+
     <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Contact Email</th>
+        <!--th>Contact Email</th-->
         <th>Meal Type</th>
         <th>Cuisine Type</th>
         <th>Diet Type</th>
         <th>Ingredients</th>
         <th>Cooking Time</th>
+        <th>Instructions</th>
+        <th>Created By</th>
         <th>Actions</th>
 
     </tr>
@@ -26,10 +29,11 @@
         <td th:text="${recipe.id}"></td>
         <td th:text="${recipe.name}"></td>
         <td th:text="${recipe.description}"></td>
-        <td th:text="${recipe.contactEmail}"></td>
+        <!--td th:text="${recipe.contactEmail}"></td-->
         <td th:text="${recipe.mealType.displayMealName}"></td>
         <td th:text="${recipe.cuisineType.displayCuisineName}"></td>
         <td th:text="${recipe.dietType.displayDietName}"></td>
+
         <td>
             <p th:each="ingredient : ${recipe.ingredients}">
 
@@ -37,9 +41,13 @@
 
             </p>
         </td>
+      
         <td th:text="${recipe.cookingTime}"></td>
+        <td th:text="${recipe.instructions}"></td>
+        <td th:text="${recipe.createdBy}"></td>
 
         <td>
+
             <a th:href="@{/recipes/edit/{id}(id=${recipe.id})}">Edit</a>
         </td>
     </tr>
