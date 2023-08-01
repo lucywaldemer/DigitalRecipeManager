@@ -30,7 +30,7 @@ public class AuthenticationController {
             return null;
         }
 
-        Optional<User> user = userRepository.findById(userId);
+        Optional<User> user = userRepository.findById(Long.valueOf(userId));
 
         if (user.isEmpty()) {
             return null;
@@ -41,6 +41,13 @@ public class AuthenticationController {
 
     private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
+    }
+
+    @GetMapping("/")
+    public String displayHomepage(Model model, HttpServletRequest request) {
+        String username = getUserFromSession(request.getSession()).getUsername();
+        model.addAttribute("username", username);
+        return "/index";
     }
 
     @GetMapping("/register")
