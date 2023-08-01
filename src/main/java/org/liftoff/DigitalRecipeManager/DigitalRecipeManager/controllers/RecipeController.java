@@ -1,20 +1,15 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Service.RecipeService;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.*;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.IngredientRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeData;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.*;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeData;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 
 @RestController
@@ -33,6 +28,7 @@ public class RecipeController {
         this.ingredientRepository = ingredientRepository;
         this.recipeService = recipeService;
     }
+    //below is the needed implementation for getting the meals.
 
     @GetMapping
     public Object[] getAllRecipes() {
@@ -83,7 +79,7 @@ public class RecipeController {
     }
     @GetMapping("edit/{recipeId}")
     public String displayEditRecipeForm(Model model, @PathVariable int recipeId) {
-        Recipe  recipeToEdit = RecipeData.getById(recipeId);
+        org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.Recipe recipeToEdit = RecipeData.getById(recipeId);
         String title = "Edit Recipe " + recipeToEdit.getName() + " (id=" + recipeToEdit.getId() + ")";
         model.addAttribute("title", title );
         model.addAttribute("recipe", recipeToEdit);
@@ -93,7 +89,7 @@ public class RecipeController {
     public String processEditRecipeForm(int recipeId, String name, String description,
                                         String contactEmail, int cookingTime,
                                         String instructions, String createdBy) {
-        Recipe recipeToEdit = RecipeData.getById(recipeId);
+        org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.Recipe recipeToEdit = RecipeData.getById(recipeId);
         recipeToEdit.setName(name);
         recipeToEdit.setDescription(description);
         //recipeToEdit.setContactEmail(contactEmail);
