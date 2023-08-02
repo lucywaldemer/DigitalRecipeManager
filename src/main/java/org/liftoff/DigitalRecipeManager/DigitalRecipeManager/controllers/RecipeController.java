@@ -1,49 +1,37 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Service.RecipeService;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.*;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.IngredientRepository;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeData;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.*;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.validation.Valid;
 import java.util.List;
 
 
 @RestController
+@Controller
 @RequestMapping("recipes")
 public class RecipeController {
 
     @Autowired
-    IngredientRepository ingredientRepository;
-
+    private IngredientRepository ingredientRepository;
     @Autowired
-    RecipeRepository recipeRepository;
-    @Autowired
-    private RecipeService recipeService;
+    private RecipeRepository recipeRepository;
 
-    public RecipeController(IngredientRepository ingredientRepository, RecipeService recipeService) {
-        this.ingredientRepository = ingredientRepository;
-        this.recipeService = recipeService;
-    }
 
     @GetMapping
-    public Object[] getAllRecipes() {
-        return  recipeService.findRecipeByMeal();
-    }
-    @GetMapping("")
     public String displayAllRecipes(Model model)    {
         model.addAttribute("title","All Recipes");
         model.addAttribute("recipes", recipeRepository.findAll());
         return "recipes/index";
     }
+
 
     @GetMapping("create")
     public String displayCreateRecipeForm(Model model) {
@@ -62,47 +50,51 @@ public class RecipeController {
             model.addAttribute("title", "Create Recipe");
             return "recipes/create";
         }
-            RecipeData.add(newRecipe);
+            recipeRepository.save(newRecipe);
             return "redirect:";
         }
 
     @GetMapping("delete")
     public String displayDeleteRecipeForm(Model model)   {
         model.addAttribute("title", "Delete Recipe");
-        model.addAttribute("recipes", RecipeData.getAll());
+        model.addAttribute("recipes", recipeRepository.findAll());
         return "recipes/delete";
     }
     @PostMapping("delete")
     public String processDeleteRecipesForm(@RequestParam(required = false) int[] recipeIds)   {
         if  (recipeIds != null) {
             for (int id : recipeIds) {
-                RecipeData.remove(id);
+                recipeRepository.deleteById(id);
             }
         }
         return "redirect:";
     }
     @GetMapping("edit/{recipeId}")
     public String displayEditRecipeForm(Model model, @PathVariable int recipeId) {
-        Recipe  recipeToEdit = RecipeData.getById(recipeId);
-        String title = "Edit Recipe " + recipeToEdit.getName() + " (id=" + recipeToEdit.getId() + ")";
+
+        Recipe recipe = recipeRepository.findById(recipeId);
+        String title = "Edit Recipe " + recipe.getName() + " (id=" + recipe.getId() + ")";
         model.addAttribute("title", title );
-        model.addAttribute("recipe", recipeToEdit);
+        model.addAttribute("recipe", recipe);
         return "recipes/edit";
     }
+
     @PostMapping("edit")
+
     public String processEditRecipeForm(int recipeId, String name, String description,
-                                        String contactEmail, int cookingTime,
+                                        List<Ingredient> ingredients, int cookingTime,
                                         String instructions, String createdBy) {
-        Recipe recipeToEdit = RecipeData.getById(recipeId);
+
+        Recipe recipeToEdit = recipeRepository.findById(recipeId);
         recipeToEdit.setName(name);
         recipeToEdit.setDescription(description);
         //recipeToEdit.setContactEmail(contactEmail);
-        //recipeToEdit.setIngredients(ingredients);
+        recipeToEdit.setIngredients(ingredients);
         recipeToEdit.setCookingTime(cookingTime);
         recipeToEdit.setInstructions(instructions);
         recipeToEdit.setCreatedBy(createdBy);
+
         return "redirect:";
     }
-
 }
 

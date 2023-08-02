@@ -4,7 +4,6 @@ public enum CuisineType {
     CHINESE("Chinese"),
     INDIAN("Indian"),
     MEXICAN("Mexican"),
-
     MEDITERRANEAN("Mediterranean"),
     AMERICAN("American"),
     TURKISH("Turkish"),
