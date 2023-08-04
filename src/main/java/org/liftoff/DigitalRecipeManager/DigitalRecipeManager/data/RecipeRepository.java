@@ -1,12 +1,14 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Recipe;
+//import org.springframework.data.jpa.repository.CrudRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
+public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     List<Recipe> findByIngredientsContaining(String ingredient);
     List<Recipe> findBySpecialDietsContaining(String diet);
