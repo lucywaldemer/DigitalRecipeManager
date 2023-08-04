@@ -12,7 +12,7 @@ public enum DietType {
     LOWFAT("LowFat"),
     PLANTBASED("PlantBased"),
     NONE("None");
-
+  
     private final String displayDietName;
 
     DietType(String displayDietName) {

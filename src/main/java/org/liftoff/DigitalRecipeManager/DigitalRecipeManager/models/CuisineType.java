@@ -4,6 +4,7 @@ public enum CuisineType {
     CHINESE("Chinese"),
     INDIAN("Indian"),
     MEXICAN("Mexican"),
+
     MEDITERRANEAN("Mediterranean"),
     AMERICAN("American"),
     TURKISH("Turkish"),
@@ -12,7 +13,6 @@ public enum CuisineType {
     ITALIAN("Italian"),
     JAPANESE("Japanese"),
     KOREAN("Korean"),
-
     NONE("None");
 
     private final String displayCuisineName;

@@ -4,15 +4,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.Objects;
+
 @MappedSuperclass
 public abstract class AbstractEntity {
+
     @Id
     @GeneratedValue
     private int id;
 
+
     public int getId() {
         return id;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -21,9 +25,9 @@ public abstract class AbstractEntity {
         AbstractEntity that = (AbstractEntity) o;
         return id == that.id;
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
     }
 }
-
