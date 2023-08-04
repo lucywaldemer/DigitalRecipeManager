@@ -1,7 +1,9 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.IngredientRepository;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.*;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,10 +17,15 @@ import java.util.List;
 @RequestMapping("recipes")
 public class RecipeController {
 
+    @Autowired
+    private IngredientRepository ingredientRepository;
+    @Autowired
+    private RecipeRepository recipeRepository;
+
     @GetMapping
     public String displayAllRecipes(Model model) {
         model.addAttribute("title", "All Recipes");
-        model.addAttribute("recipes", RecipeData.getAll());
+        model.addAttribute("recipes", recipeRepository.findAll());
         return "recipes/index";
     }
 
@@ -39,28 +46,28 @@ public class RecipeController {
             model.addAttribute("title", "Create Recipe");
             return "recipes/create";
         }
-            RecipeData.add(newRecipe);
+            recipeRepository.save(newRecipe);
             return "redirect:";
         }
 
     @GetMapping("delete")
     public String displayDeleteRecipeForm(Model model)   {
         model.addAttribute("title", "Delete Recipe");
-        model.addAttribute("recipes", RecipeData.getAll());
+        model.addAttribute("recipes", recipeRepository.findAll());
         return "recipes/delete";
     }
     @PostMapping("delete")
     public String processDeleteRecipesForm(@RequestParam(required = false) int[] recipeIds)   {
         if  (recipeIds != null) {
             for (int id : recipeIds) {
-                RecipeData.remove(id);
+                recipeRepository.deleteById(id);
             }
         }
         return "redirect:";
     }
     @GetMapping("edit/{recipeId}")
     public String displayEditRecipeForm(Model model, @PathVariable int recipeId) {
-        Recipe  recipeToEdit = RecipeData.getById(recipeId);
+        Recipe  recipeToEdit = recipeRepository.findById(recipeId);
         String title = "Edit Recipe " + recipeToEdit.getName() + " (id=" + recipeToEdit.getId() + ")";
         model.addAttribute("title", title );
         model.addAttribute("recipe", recipeToEdit);
@@ -70,7 +77,7 @@ public class RecipeController {
     public String processEditRecipeForm(int recipeId, String name, String description,
                                         String contactEmail, int cookingTime,
                                         String instructions, String createdBy) {
-        Recipe recipeToEdit = RecipeData.getById(recipeId);
+        Recipe recipeToEdit = recipeRepository.findById(recipeId);
         recipeToEdit.setName(name);
         recipeToEdit.setDescription(description);
         //recipeToEdit.setContactEmail(contactEmail);
