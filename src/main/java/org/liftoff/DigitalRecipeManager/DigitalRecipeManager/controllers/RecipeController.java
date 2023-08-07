@@ -1,42 +1,39 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.IngredientRepository;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.*;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.IngredientRepository;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeData;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Entity;
 import javax.validation.Valid;
-
+import java.util.List;
 
 @RestController
 @RequestMapping("recipes")
 public class RecipeController {
 
     @Autowired
-    IngredientRepository ingredientRepository;
-
+    private IngredientRepository ingredientRepository;
     @Autowired
-    RecipeRepository recipeRepository;
+    private RecipeRepository recipeRepository;
     @Autowired
     private RecipeService recipeService;
-
-    public RecipeController(IngredientRepository ingredientRepository, RecipeService recipeService) {
+    /*public RecipeController(IngredientRepository ingredientRepository, RecipeService recipeService) {
         this.ingredientRepository = ingredientRepository;
         this.recipeService = recipeService;
     }
-    //below is the needed implementation for getting the meals.
+
+     */
+
 
     @GetMapping
-    public Object[] getAllRecipes() {
-        return  recipeService.findRecipeByMeal();
-    }
-    @GetMapping("")
-    public String displayAllRecipes(Model model)    {
-        model.addAttribute("title","All Recipes");
+    public String displayAllRecipes(Model model) {
+        model.addAttribute("title", "All Recipes");
         model.addAttribute("recipes", recipeRepository.findAll());
         return "recipes/index";
     }
@@ -58,28 +55,28 @@ public class RecipeController {
             model.addAttribute("title", "Create Recipe");
             return "recipes/create";
         }
-            RecipeData.add(newRecipe);
-            return "redirect:";
-        }
+        recipeRepository.save(newRecipe);
+        return "redirect:";
+    }
 
     @GetMapping("delete")
     public String displayDeleteRecipeForm(Model model)   {
         model.addAttribute("title", "Delete Recipe");
-        model.addAttribute("recipes", RecipeData.getAll());
+        model.addAttribute("recipes", recipeRepository.findAll());
         return "recipes/delete";
     }
     @PostMapping("delete")
     public String processDeleteRecipesForm(@RequestParam(required = false) int[] recipeIds)   {
         if  (recipeIds != null) {
             for (int id : recipeIds) {
-                RecipeData.remove(id);
+                recipeRepository.deleteById(id);
             }
         }
         return "redirect:";
     }
     @GetMapping("edit/{recipeId}")
     public String displayEditRecipeForm(Model model, @PathVariable int recipeId) {
-        org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.Recipe recipeToEdit = RecipeData.getById(recipeId);
+        Recipe recipeToEdit = recipeRepository.findById(recipeId);
         String title = "Edit Recipe " + recipeToEdit.getName() + " (id=" + recipeToEdit.getId() + ")";
         model.addAttribute("title", title );
         model.addAttribute("recipe", recipeToEdit);
@@ -87,9 +84,9 @@ public class RecipeController {
     }
     @PostMapping("edit")
     public String processEditRecipeForm(int recipeId, String name, String description,
-                                        String contactEmail, int cookingTime,
+                                        String ingredients, int cookingTime,
                                         String instructions, String createdBy) {
-        org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.Recipe recipeToEdit = RecipeData.getById(recipeId);
+        Recipe recipeToEdit = recipeRepository.findById(recipeId);
         recipeToEdit.setName(name);
         recipeToEdit.setDescription(description);
         //recipeToEdit.setContactEmail(contactEmail);
@@ -101,4 +98,3 @@ public class RecipeController {
     }
 
 }
-
