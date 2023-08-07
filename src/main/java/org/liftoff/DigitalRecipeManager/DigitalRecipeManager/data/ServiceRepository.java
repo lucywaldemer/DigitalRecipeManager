@@ -1,4 +1,4 @@
-package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data;
+package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

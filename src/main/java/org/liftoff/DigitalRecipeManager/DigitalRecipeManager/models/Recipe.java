@@ -1,17 +1,17 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
+@Entity
+public class Recipe extends AbstractEntity {
 
-public class Recipe {
-
-    private int id;
-    private static int nextId = 1;
+//    private int id;
+//    private static int nextId = 1;
     @Size(min=3, max=50, message= "Name must be between 3 and 50 characters!")
     @NotBlank(message = "Name is required!")
     private String name;
@@ -21,7 +21,9 @@ public class Recipe {
     //@Email(message = "Invalid email.Try again!")
     //@NotBlank(message = "Email is required!")
     //private String contactEmail;
-    //private List<Ingredient> ingredients;
+    @ManyToMany
+    private List<Ingredient> ingredients;
+
     private MealType mealType;
     private DietType dietType;
     private CuisineType cuisineType;
@@ -36,10 +38,8 @@ public class Recipe {
 
 
 
-    public Recipe(String name, String description, MealType mealType,
-                  DietType dietType,CuisineType cuisineType, int cookingTime,
-                  String instructions, String createdBy ) {
-        this();
+    public Recipe() {
+//        this();
         this.name = name;
         this.description = description;
         //this.contactEmail = contactEmail;
@@ -52,10 +52,10 @@ public class Recipe {
 
     }
 
-    public Recipe() {
-        this.id = nextId;
-        nextId++;
-    }
+//    public Recipe() {
+//        this.id = nextId;
+//        nextId++;
+//    }
 
     public String getName() {
         return name;
@@ -81,9 +81,9 @@ public class Recipe {
         this.contactEmail = contactEmail;
     }*/
 
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 
     public MealType getMealType() {
         return mealType;
@@ -145,26 +145,27 @@ public class Recipe {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Recipe recipe = (Recipe) o;
-        return id == recipe.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
+
+//    @Override
+//    public String toString() {
+//        return name;
+//    }
+
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Recipe recipe = (Recipe) o;
+//        return id == recipe.id;
+//    }
+
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id);
+//    }
+//}
 
 
 

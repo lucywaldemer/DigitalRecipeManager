@@ -8,7 +8,7 @@ public enum CuisineType {
     MEDITERRANEAN("Mediterranean"),
     AMERICAN("American"),
     TURKISH("Turkish"),
-    GREEK("GREEK"),
+    GREEK("Greek"),
     FRENCH("French"),
     ITALIAN("Italian"),
     JAPANESE("Japanese"),

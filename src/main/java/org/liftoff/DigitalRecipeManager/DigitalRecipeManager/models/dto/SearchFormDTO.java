@@ -2,21 +2,21 @@ package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto;
 
 public class SearchFormDTO {
     private String ingredient;
-    private String diet;
-    private String title;
+    private String dietType;
+    private String name;
     private int cookingTime;
     private String cuisineType;
-
+    private String mealType;
     public String getIngredient() {
         return ingredient;
     }
 
     public String getDiet() {
-        return diet;
+        return dietType;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
 
@@ -34,11 +34,11 @@ public class SearchFormDTO {
     }
 
     public void setDiet(String diet) {
-        this.diet = diet;
+        this.dietType = diet;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String name) {
+        this.name = name;
     }
 
     public void setCookingTime(int cookingTime) {
@@ -47,5 +47,13 @@ public class SearchFormDTO {
 
     public void setCuisineType(String cuisineType) {
         this.cuisineType = cuisineType;
+    }
+
+    public String getMealType() {
+        return mealType;
+    }
+
+    public void setMealType(String mealType) {
+        this.mealType = mealType;
     }
 }

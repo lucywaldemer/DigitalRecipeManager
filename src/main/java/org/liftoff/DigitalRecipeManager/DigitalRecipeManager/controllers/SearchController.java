@@ -1,7 +1,7 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.Recipe;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeRepository;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Recipe;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto.SearchFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+
 
 @Controller
 public class SearchController {
@@ -28,13 +29,14 @@ public class SearchController {
     public String processSearchForm(@ModelAttribute SearchFormDTO searchForm, Model model) {
 
         String ingredient = searchForm.getIngredient();
-        String diet = searchForm.getDiet();
-        String title = searchForm.getTitle();
+        String dietType = searchForm.getDiet();
+        String name = searchForm.getName();
         int cookingTime = searchForm.getCookingTime();
         String cuisineType = searchForm.getCuisineType();
+        String mealType = searchForm.getMealType();
 
         List<Recipe> searchResults = recipeRepository.findByAll
-                (ingredient, diet, title, cuisineType,
+                (ingredient, dietType, name, cuisineType, mealType,
                 cookingTime);
 
         model.addAttribute("searchResults", searchResults);
