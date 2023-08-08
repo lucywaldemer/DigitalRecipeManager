@@ -49,7 +49,8 @@ public class AuthenticationController {
         model.addAttribute("username", username);
         return "/index";
     }
-
+// need to add a before to break the protection for
+// register that is built in to spring boot or spring security or thymeleaf
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
