@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-@Controller
+@RestController
 @RequestMapping("recipes")
 public class RecipeController {
 
@@ -21,6 +21,15 @@ public class RecipeController {
     private IngredientRepository ingredientRepository;
     @Autowired
     private RecipeRepository recipeRepository;
+    @Autowired
+    private RecipeService recipeService;
+    /*public RecipeController(IngredientRepository ingredientRepository, RecipeService recipeService) {
+        this.ingredientRepository = ingredientRepository;
+        this.recipeService = recipeService;
+    }
+
+     */
+
 
     @GetMapping
     public String displayAllRecipes(Model model) {
@@ -75,7 +84,7 @@ public class RecipeController {
     }
     @PostMapping("edit")
     public String processEditRecipeForm(int recipeId, String name, String description,
-                                        String contactEmail, int cookingTime,
+                                        String ingredients, int cookingTime,
                                         String instructions, String createdBy) {
         Recipe recipeToEdit = recipeRepository.findById(recipeId);
         recipeToEdit.setName(name);

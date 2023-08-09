@@ -36,7 +36,6 @@ public class Recipe extends AbstractEntity  {
     public Recipe(String name, String description, List<Ingredient>ingredients,
                   MealType mealType, DietType dietType,CuisineType cuisineType,
                   int cookingTime, String instructions, String createdBy ) {
-        this();
         this.name = name;
         this.description = description;
         //this.contactEmail = contactEmail;

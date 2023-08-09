@@ -1,8 +1,8 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.IngredientRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Ingredient;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.RecipeService;
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
