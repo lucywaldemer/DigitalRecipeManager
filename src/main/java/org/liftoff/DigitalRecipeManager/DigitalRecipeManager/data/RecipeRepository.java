@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
+
     Recipe findById(int recipeId);
 
     List<Recipe> findByIngredientsAndDietTypeAndNameAndCuisineTypeAndMealTypeAndCookingTime
@@ -16,6 +17,4 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
     //List<Recipe> findByAll(String ingredient, String dietType, String name, String cuisineType, String mealType,
     //                int cookingTime);
 }
-
-
 
