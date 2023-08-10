@@ -55,9 +55,10 @@ public class RecipeController {
             model.addAttribute("title", "Create Recipe");
             return "recipes/create";
         }
-        recipeRepository.save(newRecipe);
-        return "redirect:";
-    }
+
+            recipeRepository.save(newRecipe);
+            return "redirect:";
+        }
 
     @GetMapping("delete")
     public String displayDeleteRecipeForm(Model model)   {
@@ -76,7 +77,8 @@ public class RecipeController {
     }
     @GetMapping("edit/{recipeId}")
     public String displayEditRecipeForm(Model model, @PathVariable int recipeId) {
-        Recipe recipeToEdit = recipeRepository.findById(recipeId);
+        Recipe  recipeToEdit = recipeRepository.findById(recipeId);
+
         String title = "Edit Recipe " + recipeToEdit.getName() + " (id=" + recipeToEdit.getId() + ")";
         model.addAttribute("title", title );
         model.addAttribute("recipe", recipeToEdit);
