@@ -35,7 +35,7 @@ public class SearchController {
         String cuisineType = searchForm.getCuisineType();
         String mealType = searchForm.getMealType();
 
-        List<Recipe> searchResults = recipeRepository.findByAll
+        List<Recipe> searchResults = recipeRepository.findByIngredientsAndDietTypeAndNameAndCuisineTypeAndCookingTimeLessThanAndMealType//findAllBy
                 (ingredient, dietType, name, cuisineType, mealType,
                 cookingTime);
 
