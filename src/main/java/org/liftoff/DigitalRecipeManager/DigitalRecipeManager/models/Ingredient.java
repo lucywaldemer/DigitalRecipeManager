@@ -12,9 +12,9 @@ public class Ingredient extends AbstractEntity {
 
     @ManyToMany(mappedBy = "ingredients")
     private final List<Recipe> recipes = new ArrayList<>();
+    public Ingredient() {}
+    public Ingredient(String name) {
 
-    public Ingredient() {};
-    public Ingredient (String name) {
         this.name = name;
     }
 
