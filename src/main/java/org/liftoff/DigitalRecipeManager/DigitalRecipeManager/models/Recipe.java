@@ -1,6 +1,8 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.*;
@@ -37,9 +39,8 @@ public class Recipe extends AbstractEntity {
     private String createdBy;
 
 
-
     public Recipe() {
-//        this();
+//     this();
         this.name = name;
         this.description = description;
         //this.contactEmail = contactEmail;

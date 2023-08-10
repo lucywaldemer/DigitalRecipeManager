@@ -29,15 +29,14 @@ public class SearchController {
     public String processSearchForm(@ModelAttribute SearchFormDTO searchForm, Model model) {
 
         String ingredient = searchForm.getIngredient();
-        String dietType = searchForm.getDiet();
+        String dietType = searchForm.getDietType();
         String name = searchForm.getName();
         int cookingTime = searchForm.getCookingTime();
         String cuisineType = searchForm.getCuisineType();
         String mealType = searchForm.getMealType();
 
-        List<Recipe> searchResults = recipeRepository.findByAll
-                (ingredient, dietType, name, cuisineType, mealType,
-                cookingTime);
+        List<Recipe> searchResults = recipeRepository.findByIngredientsAndDietTypeAndNameAndCuisineTypeAndCookingTimeLessThanAndMealType(ingredient, dietType,
+                name, cuisineType, mealType, cookingTime);
 
         model.addAttribute("searchResults", searchResults);
         return "search_results";
