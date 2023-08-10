@@ -22,7 +22,7 @@ public class AuthenticationController {
     @Autowired
     UserRepository userRepository;
 
-    private static final String userSessionKey = "user";
+    public static final String userSessionKey = "user";
 
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -39,7 +39,7 @@ public class AuthenticationController {
         return user.get();
     }
 
-    private static void setUserInSession(HttpSession session, User user) {
+    public static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
     }
 
@@ -49,8 +49,7 @@ public class AuthenticationController {
         model.addAttribute("username", username);
         return "/index";
     }
-// need to add a before to break the protection for
-// register that is built in to spring boot or spring security or thymeleaf
+
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
@@ -69,7 +68,6 @@ public class AuthenticationController {
         }
 
         User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
-
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
             model.addAttribute("title", "Register");
@@ -88,8 +86,10 @@ public class AuthenticationController {
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:";
+        return "login";
     }
+
+    // login is throwing a 302 error and not directing to log in once a user registers
 
     @GetMapping("/login")
     public String displayLoginForm(Model model) {
