@@ -56,4 +56,6 @@ public class SearchFormDTO {
     public void setMealType(String mealType) {
         this.mealType = mealType;
     }
+
 }
+

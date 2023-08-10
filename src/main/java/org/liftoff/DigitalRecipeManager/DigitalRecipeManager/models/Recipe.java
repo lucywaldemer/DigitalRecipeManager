@@ -1,19 +1,17 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
 import java.util.List;
 
-
 @Entity
-public class Recipe extends AbstractEntity {
+public class Recipe extends AbstractEntity  {
 
-//    private int id;
-//    private static int nextId = 1;
     @Size(min=3, max=50, message= "Name must be between 3 and 50 characters!")
     @NotBlank(message = "Name is required!")
     private String name;
@@ -39,24 +37,25 @@ public class Recipe extends AbstractEntity {
     private String createdBy;
 
 
-    public Recipe() {
-//     this();
+    public Recipe(String name, String description, List<Ingredient>ingredients,
+                  MealType mealType, DietType dietType,CuisineType cuisineType,
+                  int cookingTime, String instructions, String createdBy ) {
+
         this.name = name;
         this.description = description;
         //this.contactEmail = contactEmail;
+        this.ingredients = ingredients;
         this.mealType = mealType;
         this.cuisineType = cuisineType;
         this.dietType = dietType;
         this.cookingTime = cookingTime;
         this.instructions = instructions;
         this.createdBy = createdBy;
-
     }
 
-//    public Recipe() {
-//        this.id = nextId;
-//        nextId++;
-//    }
+
+    public Recipe() {}
+
 
     public String getName() {
         return name;
@@ -82,9 +81,6 @@ public class Recipe extends AbstractEntity {
         this.contactEmail = contactEmail;
     }*/
 
-//    public int getId() {
-//        return id;
-//    }
 
     public MealType getMealType() {
         return mealType;
@@ -110,7 +106,6 @@ public class Recipe extends AbstractEntity {
         this.dietType = dietType;
     }
 
-    /*
     public List<Ingredient> getIngredients() {
 
         return ingredients;
@@ -119,9 +114,6 @@ public class Recipe extends AbstractEntity {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
-
-     */
-
 
     public int getCookingTime() {
         return cookingTime;
@@ -146,6 +138,12 @@ public class Recipe extends AbstractEntity {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }
 
 //    @Override

@@ -11,11 +11,10 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     Recipe findById(int recipeId);
 
-    List<Recipe> findByIngredientsContaining(String ingredient);
-    List<Recipe> findByDietTypeContaining(String diet);
-    List<Recipe> findByNameContaining(String name);
-    List<Recipe> findByCuisineType(String cuisineType);
-    List<Recipe> findByCookingTimeLessThan(int cookingTime);
-    List<Recipe> findByIngredientsAndDietTypeAndNameAndCuisineTypeAndCookingTimeLessThanAndMealType(String ingredient, String dietType, String name, String cuisineType, String mealType, int cookingTime);
-    List<Recipe> findAll();
+    List<Recipe> findByIngredientsAndDietTypeAndNameAndCuisineTypeAndMealTypeAndCookingTime
+            (String ingredient, String dietType, String name, String cuisineType, String mealType, int cookingTime);
+
+    //List<Recipe> findByAll(String ingredient, String dietType, String name, String cuisineType, String mealType,
+    //                int cookingTime);
 }
+
