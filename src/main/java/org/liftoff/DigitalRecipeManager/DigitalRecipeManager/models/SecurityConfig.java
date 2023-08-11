@@ -10,13 +10,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http
+                .authorizeRequests()
                 .antMatchers("/register").permitAll() // Whitelist the register page for unauthenticated access
                 .anyRequest().authenticated() // All other requests require authentication
                 .and()
-                .formLogin().loginPage("/login") // Customize login page if needed
+                .formLogin()
+                .loginPage("/login") // Customize login page if needed
+                .defaultSuccessUrl("/home").permitAll()
                 .and()
-                .logout().logoutSuccessUrl("/login?logout"); // Customize logout page if needed
+                .logout().logoutSuccessUrl("/login?logout").permitAll(); // Customize logout page if needed
     }
 }
 //Specify the URL for registration:
@@ -30,4 +33,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //With the above configuration, the registration page should now be accessible without requiring authentication. Other parts of the application will still be secured and require the user to log in. Please note that this is just a basic configuration example, and you may need to adjust it according to your specific application requirements.
 //
-//Remember to import the necessary Spring Security and Spring Boot dependencies in your pom.xml or build.gradle file if they are not already present. Additionally, if you have any other existing security configurations, you may need to merge them into this class for proper behavior.
