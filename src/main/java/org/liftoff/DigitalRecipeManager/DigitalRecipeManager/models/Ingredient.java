@@ -1,27 +1,21 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
-
-Senay
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ingredient {
-    private int id;
-    private static int nextId = 1;
+@Entity
+public class Ingredient extends AbstractEntity {
+    @NotNull
     private String name;
+
+    @ManyToMany(mappedBy = "ingredients")
     private final List<Recipe> recipes = new ArrayList<>();
-
+    public Ingredient() {}
     public Ingredient(String name) {
-        this();
-        this.name = name;
-    }
-  
-    public Ingredient() {
-        this.id = nextId;
-        nextId++;
-    }
 
-    public int getId() {
-        return id;
+        this.name = name;
     }
 
     public String getName() {

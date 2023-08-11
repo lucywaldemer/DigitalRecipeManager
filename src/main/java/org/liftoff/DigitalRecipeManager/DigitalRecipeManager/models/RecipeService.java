@@ -1,6 +1,6 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.data.RecipeRepository;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
