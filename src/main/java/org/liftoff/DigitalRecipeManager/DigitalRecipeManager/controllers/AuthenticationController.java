@@ -90,7 +90,6 @@ public class AuthenticationController {
         return "login";
     }
 
-    // login is throwing a 302 error and not directing to log in once a user registers
 
     @GetMapping("/login")
     public String displayLoginForm(Model model) {
