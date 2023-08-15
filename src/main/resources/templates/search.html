@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<!-- search form -->
+<form th:action="@{/search}" th:object="${searchForm}" method="post">
+  <label for="ingredient">Ingredients:</label>
+  <input type="text" id="ingredient" th:field="*{ingredient}" />
+
+  <label for="dietType">Diet:</label>
+  <input type="text" id="dietType" th:field="*{dietType}" />
+
+  <label for="name">Title:</label>
+  <input type="text" id="name" th:field="*{name}" />
+
+  <label for="cookingTime">Cooking Time:</label>
+  <input type="number" id="cookingTime" th:field="*{cookingTime}" />
+
+  <label for="cuisineType">Cuisine Type:</label>
+  <input type="text" id="cuisineType" th:field="*{cuisineType}" />
+
+  <button type="submit">Search</button>
+</form>
+
+</body>
+</html>
+
