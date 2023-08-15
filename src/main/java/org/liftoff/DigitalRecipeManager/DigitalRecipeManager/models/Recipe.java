@@ -32,10 +32,11 @@ public class Recipe extends AbstractEntity  {
     @Size(min=3, max=50)
     @NotBlank(message= "Required!")
     private String createdBy;
+    private String measurement;
 
     public Recipe(String name, String description, List<Ingredient>ingredients,
                   MealType mealType, DietType dietType,CuisineType cuisineType,
-                  int cookingTime, String instructions, String createdBy ) {
+                  int cookingTime, String instructions, String createdBy, String measurement ) {
         this.name = name;
         this.description = description;
         //this.contactEmail = contactEmail;
@@ -46,6 +47,7 @@ public class Recipe extends AbstractEntity  {
         this.cookingTime = cookingTime;
         this.instructions = instructions;
         this.createdBy = createdBy;
+        this.measurement = measurement;
     }
 
     public Recipe() {}
@@ -129,6 +131,14 @@ public class Recipe extends AbstractEntity  {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public String getMeasurement() {
+        return measurement;
+    }
+
+    public void setMeasurement(String measurement) {
+        this.measurement = measurement;
     }
 
     @Override

@@ -10,8 +10,8 @@ import java.util.List;
 public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
     Recipe findById(int recipeId);
 
-    List<Recipe> findByIngredientsAndDietTypeAndNameAndCuisineTypeAndMealTypeAndCookingTime
-            (String ingredient, String dietType, String name, String cuisineType, String mealType, int cookingTime);
+    List<Recipe> findByIngredientsAndDietTypeAndNameAndCuisineTypeAndMealTypeAndCookingTimeAndMeasurement
+            (String ingredient, String dietType, String name, String cuisineType, String mealType, int cookingTime,String measurement);
 
     //List<Recipe> findByAll(String ingredient, String dietType, String name, String cuisineType, String mealType,
     //                int cookingTime);

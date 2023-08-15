@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("recipes")
 public class RecipeController {
 
@@ -45,6 +45,7 @@ public class RecipeController {
         model.addAttribute("mealTypes", MealType.values());
         model.addAttribute("cuisineTypes", CuisineType.values());
         model.addAttribute("dietTypes", DietType.values());
+        model.addAttribute("measurements", Measurement.values());
         return "recipes/create";
     }
 
