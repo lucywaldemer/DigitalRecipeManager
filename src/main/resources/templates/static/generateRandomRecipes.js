@@ -1,6 +1,6 @@
 window.addEventListener("load", function(){
-// add link to API URL
-    this.fetch('API NAME')
+// add link to API URL from recipeServices class findRecipeByMeal
+    this.fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
     .then(function(response){
         return response.json();
     }).then(function(response){
@@ -13,16 +13,22 @@ window.addEventListener("load", function(){
         let myHTML= `
         <div class="recipe">
 
-        // How do we want to adapt the astronaut data to fit our recipes?
+        // firstName = name (recipe title)
+        // lastName = description
+        // hours in space = cookingTime
+        // active = DietType
+        // skills = instructions
+
        <div class="bio">
-          <h3>${response[i].firstName} ${response[i].lastName}</h3>
+          <h3>${response[i].name} ${response[i].description}</h3>
           <ul>
-             <li>Hours in space: ${response[i].hoursInSpace}</li>
-             <li>Active:${response[i].active}</li>
-             <li>Skills: ${response[i].skills}</li>
+             <li>Cooking Time: ${response[i].cookingTime}</li>
+             <li>Diet Type:${response[i].DietType}</li>
+             <li>Instructions: ${response[i].instructions}</li>
           </ul>
        </div>
-       <img class="avatar" src="${response[i].picture}">
+       // class=avatar is now class=recipePicture
+       <img class="recipePicture" src="${response[i].picture}">
     </div>
         `;
 
