@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 
-@RestController
+@Controller
 @RequestMapping("ingredients")
 public class IngredientController {
 

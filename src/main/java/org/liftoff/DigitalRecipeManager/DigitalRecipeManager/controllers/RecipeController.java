@@ -13,7 +13,7 @@ import javax.persistence.Entity;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("recipes")
 public class RecipeController {
 

@@ -29,7 +29,7 @@ public class SearchController {
     public String processSearchForm(@ModelAttribute SearchFormDTO searchForm, Model model) {
 
         String ingredient = searchForm.getIngredient();
-        String dietType = searchForm.getDiet();
+        String dietType = searchForm.getDietType();
         String name = searchForm.getName();
         int cookingTime = searchForm.getCookingTime();
         String cuisineType = searchForm.getCuisineType();
