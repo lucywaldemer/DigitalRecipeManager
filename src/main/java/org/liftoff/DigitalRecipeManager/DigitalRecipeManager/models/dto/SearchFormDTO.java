@@ -33,29 +33,10 @@ public class SearchFormDTO {
         this.ingredient = ingredient;
     }
 
-    public void setDiet(String diet) {
-        this.dietType = diet;
-    }
-
-    public void setTitle(String name) {
-        this.name = name;
-    }
-
-    public void setCookingTime(int cookingTime) {
-        this.cookingTime = cookingTime;
-    }
-
-    public void setCuisineType(String cuisineType) {
-        this.cuisineType = cuisineType;
-    }
-
     public String getMealType() {
         return mealType;
     }
 
-    public void setMealType(String mealType) {
-        this.mealType = mealType;
-    }
 
 }
 

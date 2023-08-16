@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+
+<table class="table table-striped">
+  <thead>
+
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Edit</th>
+
+  </tr>
+  </thead>
+  <tr th:each="ingredient : ${ingredients}">
+    <td th:text="${ingredient.id}"></td>
+
+    <td th:text="${ingredient.name}"></td>
+
+    <td>
+
+      <a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}">Edit</a>
+
+    </td>
+
+  </tr>
+</table>
+
+<a class="nav-link" th:href="@{/ingredients/add}"><button type="button" class="btn btn-danger">Add New Ingredient</button></a>
+
+
+
+</body>
+</html>
