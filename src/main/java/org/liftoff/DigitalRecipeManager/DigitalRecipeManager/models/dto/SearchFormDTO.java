@@ -7,6 +7,7 @@ public class SearchFormDTO {
     private int cookingTime;
     private String cuisineType;
     private String mealType;
+    private String measurement;
     public String getIngredient() {
         return ingredient;
     }
@@ -38,5 +39,11 @@ public class SearchFormDTO {
     }
 
 
-}
+    public String getMeasurement() {
+        return measurement;
+    }
 
+    public void setMeasurement(String measurement) {
+        this.measurement = measurement;
+    }
+}

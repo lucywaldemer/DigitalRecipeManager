@@ -1,9 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head th:replace="fragments :: head">
+
+</head>
 <body class="container">
 
 <header th:replace="fragments :: header"></header>
+
+<script>
+    $(document).ready(function () {
+    let counter = 0;
+    let itemNo = 1;
+
+    $("#addrow").on("click", function () {
+
+        let quantityValue = document.getElementById("quantityBox").value;
+        let measurement = document.getElementById("measurementBox").value;
+        let ingredient = document.getElementById("ingredientBox").value;
+
+
+        let newRow = $("<tr>");
+
+        let cols = "";
+
+        cols += '<td>' + itemNo + '</td>';
+        cols += '<td>' + quantityValue + '</td>';
+        cols += '<td>' + measurement + '</td>';
+        cols += '<td>' + ingredient + '</td>';
+
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+
+        newRow.append(cols);
+
+        $("table").append(newRow);
+
+        counter++;
+
+        itemNo++;
+
+        document.getElementById("quantityBox").value = '';
+        document.getElementById("measurementBox").selectedIndex = "0";
+        document.getElementById("ingredientBox").value = '';
+
+    });
+
+    $("table").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();
+        counter -= 1
+        itemNo--;
+    });
+});
+
+    </script>
 <p th:text = "${errorMsg}"  style="color:red"></p>
 
 <form method="post">
@@ -63,6 +111,7 @@
         </label>
     </div>
     <br>
+
     <div class="form-group">
         <label>Diet Type
             <select th:field="${recipe.dietType}">
@@ -73,8 +122,9 @@
             </select>
         </label>
     </div>
-Senay
+
     <br>
+
     <!--div class="form-group">
     <div style="background-color: #aaa; overflow: auto">
         <label th:for="ingredients">Add Ingredients</label>
@@ -93,14 +143,46 @@ Senay
         </label>
         <p class="error"    th:errors="${recipe.cookingTime}"></p>
     </div-->
-
+<label>Cooking time</label>
     <div class="form floating">
-        <div class="col">Column Six</div>
     <input th:field="${recipe.cookingTime}" class="form-control"
            aria-describedby="cookingTimeHelp" placeholder="Cooking Time">
     <p class="error"    th:errors="${recipe.cookingTime}"></p>
     </div>
     <br>
+    <label>Please add ingredients</label>
+
+    <input type="text" name="quantityBox" id = "quantityBox" class="form-control" placeholder="Please enter quantity..." />
+
+
+    <select id="measurementBox" name="measurementBox" class="form-select" th:field="${recipe.measurement}">
+        <option th:each="measurement : ${measurements}"
+                th:value="${measurement}"
+                th:text="${measurement.displayMeasurementName}"
+        ></option>
+    </select>
+
+    <input type="text" name="ingredientBox" id="ingredientBox" class="form-control" placeholder="please enter ingredient"/>
+
+
+    <input type="button" class="btn btn-lg btn-block " id="addrow" value="Add Ingredient" />
+
+
+    <label>Ingredients</label>
+    <table id="ingredientTable" name="ingredientTable" class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Measurement</th>
+            <th scope="col">Ingredient</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
 
     <div class="form floating">
         <input th:field="${recipe.instructions}" class="form-control"

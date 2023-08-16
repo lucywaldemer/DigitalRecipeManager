@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Entity;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -45,6 +44,7 @@ public class RecipeController {
         model.addAttribute("mealTypes", MealType.values());
         model.addAttribute("cuisineTypes", CuisineType.values());
         model.addAttribute("dietTypes", DietType.values());
+        model.addAttribute("measurements", Measurement.values());
         return "recipes/create";
     }
 
@@ -55,7 +55,6 @@ public class RecipeController {
             model.addAttribute("title", "Create Recipe");
             return "recipes/create";
         }
-
             recipeRepository.save(newRecipe);
             return "redirect:";
         }
@@ -78,7 +77,6 @@ public class RecipeController {
     @GetMapping("edit/{recipeId}")
     public String displayEditRecipeForm(Model model, @PathVariable int recipeId) {
         Recipe  recipeToEdit = recipeRepository.findById(recipeId);
-
         String title = "Edit Recipe " + recipeToEdit.getName() + " (id=" + recipeToEdit.getId() + ")";
         model.addAttribute("title", title );
         model.addAttribute("recipe", recipeToEdit);
@@ -100,3 +98,4 @@ public class RecipeController {
     }
 
 }
+
