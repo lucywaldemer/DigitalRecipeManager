@@ -2,11 +2,11 @@ package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto;
 
 public class SearchFormDTO {
     private String ingredient;
-    private String dietType;
-    private String name;
-    private int cookingTime;
-    private String cuisineType;
-    private String mealType;
+    public String dietType;
+    public String name;
+    public int cookingTime;
+    public String cuisineType;
+    public String mealType;
     public String getIngredient() {
         return ingredient;
     }
