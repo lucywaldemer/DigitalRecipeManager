@@ -1,12 +1,17 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
 import com.sun.istack.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 public class User extends AbstractEntity {
+    // user ID comes from AbstractEntity
 
     @NotNull
     private String username;
@@ -16,7 +21,8 @@ public class User extends AbstractEntity {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public User() {}
+    public User() {
+    }
 
     public User(String username, String password) {
         this.username = username;
@@ -30,7 +36,6 @@ public class User extends AbstractEntity {
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
     }
-
-
-
 }
+
+
