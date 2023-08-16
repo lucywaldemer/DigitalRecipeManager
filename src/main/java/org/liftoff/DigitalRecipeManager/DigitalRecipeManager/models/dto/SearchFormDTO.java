@@ -12,7 +12,7 @@ public class SearchFormDTO {
         return ingredient;
     }
 
-    public String getDiet() {
+    public String getDietType() {
         return dietType;
     }
 
