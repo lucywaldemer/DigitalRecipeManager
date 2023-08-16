@@ -1,6 +1,5 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
@@ -11,7 +10,6 @@ import java.util.List;
 
 @Entity
 public class Recipe extends AbstractEntity  {
-
     @Size(min=3, max=50, message= "Name must be between 3 and 50 characters!")
     @NotBlank(message = "Name is required!")
     private String name;
@@ -23,7 +21,6 @@ public class Recipe extends AbstractEntity  {
     //private String contactEmail;
     @ManyToMany
     private List<Ingredient> ingredients;
-
     private MealType mealType;
     private DietType dietType;
     private CuisineType cuisineType;
@@ -35,12 +32,11 @@ public class Recipe extends AbstractEntity  {
     @Size(min=3, max=50)
     @NotBlank(message= "Required!")
     private String createdBy;
-
+    private String measurement;
 
     public Recipe(String name, String description, List<Ingredient>ingredients,
                   MealType mealType, DietType dietType,CuisineType cuisineType,
-                  int cookingTime, String instructions, String createdBy ) {
-
+                  int cookingTime, String instructions, String createdBy, String measurement ) {
         this.name = name;
         this.description = description;
         //this.contactEmail = contactEmail;
@@ -51,11 +47,10 @@ public class Recipe extends AbstractEntity  {
         this.cookingTime = cookingTime;
         this.instructions = instructions;
         this.createdBy = createdBy;
+        this.measurement = measurement;
     }
 
-
     public Recipe() {}
-
 
     public String getName() {
         return name;
@@ -80,7 +75,6 @@ public class Recipe extends AbstractEntity  {
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
     }*/
-
 
     public MealType getMealType() {
         return mealType;
@@ -139,32 +133,19 @@ public class Recipe extends AbstractEntity  {
         this.createdBy = createdBy;
     }
 
+    public String getMeasurement() {
+        return measurement;
+    }
+
+    public void setMeasurement(String measurement) {
+        this.measurement = measurement;
+    }
+
     @Override
     public String toString() {
         return name;
     }
-
 }
-
-//    @Override
-//    public String toString() {
-//        return name;
-//    }
-
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Recipe recipe = (Recipe) o;
-//        return id == recipe.id;
-//    }
-
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id);
-//    }
-//}
 
 
 
