@@ -22,7 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 //        }
 //
 //    }
-
+// THE ABOVE CODE WAS COMMENTED OUT, THE BELOW CODE WAS UNCOMMENTED
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -52,4 +52,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //Make sure that the registration page's controller and view are correctly configured so that it can be accessed when a user visits the /register URL.
 //
 //With the above configuration, the registration page should now be accessible without requiring authentication. Other parts of the application will still be secured and require the user to log in. Please note that this is just a basic configuration example, and you may need to adjust it according to your specific application requirements.
-//
+

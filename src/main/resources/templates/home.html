@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width">
     <title>Homepage</title>
     // must have thymeleaf th:href and th:src ... trying full file path for troubleshooting purposes
-    <link th:href="@(src/main/resources/static/style.css}"  rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@{src/main/resources/static/style}" />
 </head>
 <body>
 <script th:src="@{/script.js}"></script>
