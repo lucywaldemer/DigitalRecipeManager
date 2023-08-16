@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+
+
+<table class="table table-striped">
+    <tbody>
+    <tr>
+        <td>Name</td>
+        <td th:text="${recipe.name}"></td>
+    </tr>
+
+    <tr>
+        <td>Description</td>
+        <td th:text="${recipe.description}"></td>
+    </tr>
+
+    <tr>
+        <td>Meal Type</td>
+        <td th:text="${recipe.mealType}"></td>
+    </tr>
+
+    <tr>
+        <td>Cuisine Type</td>
+        <td th:text="${recipe.cuisineType}"></td>
+    </tr>
+
+    <tr>
+        <td>Diet Type</td>
+        <td th:text="${recipe.dietType}"></td>
+    </tr>
+
+    <tr>
+        <td>Cooking Time</td>
+        <td th:text="${recipe.cookingTime}"></td>
+    </tr>
+
+    <tr>
+        <td>Instructions</td>
+        <td th:text="${recipe.instructions}"></td>
+    </tr>
+
+    <tr>
+        <td>Created by</td>
+        <td th:text="${recipe.createdBy}"></td>
+    </tr>
+
+    </tbody>
+</table>
+
+<a class="nav-link" href="/recipes"><button type="button" class="btn btn-primary">Go Back to recipes</button></a>
+<br>
+<a class="nav-link" th:href="@{/recipes/edit/{id}(id=${recipe.id})}"><button type="button" class="btn btn-danger">Edit</button></a>
+</body>
+</html>
