@@ -34,10 +34,11 @@ public class SearchController {
         int cookingTime = searchForm.getCookingTime();
         String cuisineType = searchForm.getCuisineType();
         String mealType = searchForm.getMealType();
+        String measurement = searchForm.getMeasurement();
 
-        List<Recipe> searchResults = recipeRepository.findByIngredientsAndDietTypeAndNameAndCuisineTypeAndMealTypeAndCookingTime//findByAll
+        List<Recipe> searchResults = recipeRepository.findByIngredientsAndDietTypeAndNameAndCuisineTypeAndMealTypeAndCookingTimeAndMeasurement//findByAll
                 (ingredient, dietType, name, cuisineType, mealType,
-                        cookingTime);
+                        cookingTime, measurement);
 
         model.addAttribute("searchResults", searchResults);
         return "search_results";
