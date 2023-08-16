@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
-    // ability to click a hyperlink for 'all recipes' and also click 'profile'
+    // ability to click a hyperlink for 'all recipes'
     // TO DO ^^^
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width">
-    <title>My Recipe Manager Homepage</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <title>Homepage</title>
+    // must have thymeleaf th:href and th:src ... trying full file path for troubleshooting purposes
+    <link rel="stylesheet" type="text/css" href="@{src/main/resources/static/style}" />
 </head>
 <body>
-<script src="script.js"></script>
+<script th:src="@{/script.js}"></script>
 <h1>My Recipe Manager Homepage</h1>
 <div id="container">
-    <!-- List of recipes will be added here dynamically -->
+    <!-- List of recipes will be added here dynamically from the JS static file-->
 </div>
 </body>
 </html>
