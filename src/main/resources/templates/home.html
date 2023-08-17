@@ -1,20 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-<!--    // ability to click a hyperlink for 'all recipes'-->
-<!--    // TO DO ^^^-->
+
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head">
+
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width">
     <title>Homepage</title>
-<!--    // must have thymeleaf th:href and th:src ... trying full file path for troubleshooting purposes-->
+
 <!--    <link rel="stylesheet" type="text/css" href="@{src/main/resources/static/style}" />-->
+
 </head>
 <body>
-<script th:src="@{/script.js}"></script>
-<h1>My Recipe Manager Homepage</h1>
+<!--<script th:src="@{/script.js}"></script>-->
+<!--<h1 align="center">My Recipe Manager Homepage</h1>-->
+<!--<p th:text="'Welcome, ' + ${username}"></p>-->
+<div sec:authorize="isAuthenticated()">
+    Authenticated as <span sec:authentication="name"></span></div>
 <div id="container">
-    <!-- List of recipes will be added here dynamically from the JS static file-->
+    <header th:replace="fragments :: header"></header>
 </div>
+
+<!-- Masthead-->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img class="masthead-avatar mb-5" src="/img/avataaars.svg" alt="..." />
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0">Recipe Manager</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fa fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">Create - Learn - Share</p>
+
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <input type="text" class="form-control form-rounded" placeholder="Please enter keywords for search...">
+
+
+    </div>
+</header>
+
 </body>
 </html>
 
