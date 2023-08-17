@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers( "/register").permitAll() // Whitelist the register page for unauthenticated access
                 .antMatchers("/styles/**").permitAll()
+                .antMatchers("/login*").permitAll()
                 .anyRequest().authenticated() // All other requests require authentication
                 .and()
                 .formLogin()

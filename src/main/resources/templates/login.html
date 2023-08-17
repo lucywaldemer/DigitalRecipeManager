@@ -4,15 +4,15 @@
 <title>Login</title>
 <body class="container">
 
-<form method="post" th:action="@{/login}">
+<form method="post" th:action="@{/login}" >
   <div>
     <label th:for="username">Username
-      <input class="form-control" th:field="${loginFormDTO.username}">
+      <input class="form-control" th:field="${loginFormDTO.username}" type="text">
     </label>
     <br>
     <br>
     <label th:for="password">Password
-      <input class="form-control" th:field="${loginFormDTO.password}">
+      <input class="form-control" th:field="${loginFormDTO.password}" type="password">
     </label>
 
   </div>
