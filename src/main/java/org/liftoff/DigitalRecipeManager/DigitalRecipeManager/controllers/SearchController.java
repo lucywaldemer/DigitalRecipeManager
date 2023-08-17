@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class SearchController {
     }
 
     @PostMapping("/search")
-    public String processSearchForm(@ModelAttribute SearchFormDTO searchForm, Model model) {
+    public String processSearchForm(@RequestParam String searchTerm, @RequestParam String searchType, @ModelAttribute SearchFormDTO searchForm, Model model) {
 
         String ingredient = searchForm.getIngredient();
         String dietType = searchForm.getDietType();
@@ -42,6 +43,6 @@ public class SearchController {
                         cookingTime, measurement);
 
         model.addAttribute("searchResults", searchResults);
-        return "search_results";
+        return "search";
     }
 }

@@ -10,18 +10,18 @@
 
   <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-  <form th:action="@{/search/results}" method = "post">
+  <form th:action="@{/search/search}" method = "post">
     <h2>Search by:</h2>
 
     <p>
-            <span th:each="column : ${columns}">
+            <span th:each="recipeColumn : ${recipeColumns}">
                 <input
                         type="radio"
                         name="searchType"
-                        th:id="${column.key}"
-                        th:value="${column.key}"
-                        th:checked="${column.key == 'all'}"/>
-                <label th:for="${column.key}" th:text="${column.value}"></label>
+                        th:id="${recipe.id}"
+                        th:value="${recipeColumn.key}"
+                        th:checked="${recipeColumn.key == 'all'}"/>
+                <label th:for="${recipeColumn.key}" th:text="${recipeColumn.value}"></label>
             </span>
 
     </p>
