@@ -1,7 +1,7 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
-import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.UserRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.User;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.UserRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto.LoginFormDTO;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class AuthenticationController {
             return null;
         }
 
-        Optional<User> user = userRepository.findById(Math.toIntExact(Long.valueOf(userId)));
+        Optional<User> user = userRepository.findById(userId);
 
         if (user.isEmpty()) {
             return null;
@@ -42,6 +42,13 @@ public class AuthenticationController {
 
     public static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
+    }
+
+    @GetMapping("/")
+    public String displayHomepage(Model model, HttpServletRequest request) {
+        String username = getUserFromSession(request.getSession()).getUsername();
+        model.addAttribute("username", username);
+        return "/index";
     }
 
     @GetMapping("/register")
@@ -90,7 +97,7 @@ public class AuthenticationController {
         model.addAttribute("title", "Log In");
         return "login";
     }
-// GET 500 error An error happened during template parsing (template: "class path resource [templates/login.html]"
+
     @PostMapping("/login")
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,
@@ -119,14 +126,7 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "home";
-    }
-
-    @GetMapping("/home")
-    public String displayHomepage(Model model, HttpServletRequest request) {
-        String username = getUserFromSession(request.getSession()).getUsername();
-        model.addAttribute("username", username);
-        return "home";
+        return "redirect:";
     }
 
     @GetMapping("/logout")
