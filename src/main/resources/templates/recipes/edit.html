@@ -6,52 +6,153 @@
 
 <form method="post" th:action="@{/recipes/edit}">
     <input type="hidden" th:value="${recipe.id}" name="recipeId" />
+
+
+
     <div class="form-group">
         <label>Name
-            <input type="text"  name="name" th:value="${recipe.name}" class="form-control">
+            <input th:field="${recipe.name}" class="form-control"
+                   placeholder="Please enter recipe name..." size="60px">
         </label>
+        <p class="error"    th:errors="${recipe.name}"></p>
     </div>
-
+    <br>
     <div class="form-group">
         <label>Description
-            <input type="text"  name="description" th:value="${recipe.description}" class="form-control">
+            <input th:field="${recipe.description}" id="name" class="form-control"
+                   placeholder="Please enter recipe description..." size="120px">
         </label>
+        <p class="error"    th:errors="${recipe.description}"></p>
     </div>
+    <br>
     <!--div class="form-group">
         <label>Contact Email
-            <input type="text"  name="contactEmail" th:value="${recipe.contactEmail}" class="form-control">
+            <input th:field="${recipe.contactEmail}" class="form-control">
         </label>
+        <p class="error"    th:errors="${recipe.contactEmail}"></p>
     </div-->
 
-    <!--div class="form-group">
-        <label>Ingredients
-            <input type="text"  name="ingredients" th:value="${ingredient.name}" class="form-control">
-        </label>
-    </div-->
+    <div class="row">
 
+        <div class="col-3">
 
-    <div class="form-group">
-        <label>Cooking Time
-            <input type="text"  name="cookingTime" th:value="${recipe.cookingTime}" class="form-control">
-        </label>
+            <div class="form-group">
+                <label>Meal Type
+                    <select th:field="${recipe.mealType}" class="form-select">
+                        <option th:each="mealType : ${mealTypes}"
+                                th:value="${mealType}"
+                                th:text="${mealType.displayMealName}"
+                        ></option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="form-group">
+                <label>Cuisine Type
+                    <select th:field="${recipe.cuisineType}" class="form-select">
+                        <option th:each="cuisineType : ${cuisineTypes}"
+                                th:value="${cuisineType}"
+                                th:text="${cuisineType.displayCuisineName}"
+                        ></option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="form-group">
+                <label>Diet Type
+                    <select th:field="${recipe.dietType}" class="form-select">
+                        <option th:each="dietType : ${dietTypes}"
+                                th:value="${dietType}"
+                                th:text="${dietType.displayDietName}"
+                        ></option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <label>Cooking time (minutes)</label>
+            <div class="form floating">
+                <input type="number" th:field="${recipe.cookingTime}" class="form-control"
+                       style="height:30px" placeholder="Cooking Time" min="0">
+                <p class="error"    th:errors="${recipe.cookingTime}"></p>
+            </div>
+        </div>
     </div>
+
+    <label>Please add ingredients</label>
+
+    <div class="row">
+
+        <div class="col-4">
+
+            <input type="text" name="quantityBox" id = "quantityBox" class="form-control" placeholder="Please enter quantity..." />
+        </div>
+        <div class="col-4">
+            <select id="measurementBox" name="measurementBox" class="form-select" th:field="${recipe.measurement}">
+                <option th:each="measurement : ${measurements}"
+                        th:value="${measurement}"
+                        th:text="${measurement.displayMeasurementName}"
+                ></option>
+            </select>
+
+        </div>
+
+        <div class="col-4">
+            <input type="text" name="ingredientBox" id="ingredientBox" class="form-control" placeholder="please enter ingredient"/>
+        </div>
+    </div>
+
+    <div class="row"><div class="col-12"></div> </div>
+    <br>
+    <div class="row">
+
+        <div class="col-12" align="center">
+            <input type="button" class="btn btn-primary" id="addrow" value="Add Ingredient" />
+        </div>
+    </div>
+
+
+
+    <label>Ingredients</label>
+    <table id="ingredientTable" name="ingredientTable" class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Measurement</th>
+            <th scope="col">Ingredient</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
 
     <div class="form-group">
         <label>Instructions
-            <input type="text"  name="instructions" th:value="${recipe.instructions}" class="form-control">
+            <textarea th:field="${recipe.instructions}" class="form-control"
+                      placeholder="Please enter instructions..." rows="4" cols="100"></textarea>
         </label>
+        <p class="error"    th:errors="${recipe.instructions}"></p>
     </div>
 
     <div class="form-group">
         <label>Created By
-            <input type="text"  name="createdBy" th:value="${recipe.createdBy}" class="form-control">
+            <input th:field="${recipe.createdBy}" class="form-control"
+                   placeholder="Please enter created by..."/>
         </label>
+        <p class="error"    th:errors="${recipe.createdBy}"></p>
     </div>
-
+    <br>
     <div class="form-group">
         <input type="submit"    value="Edit Recipe" class="btn btn-success">
     </div>
 </form>
-
 </body>
 </html>
