@@ -2,10 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-
-<!--<header th:replace="fragments :: header"></header>-->
-
-<form method="post">
+<title>Register</title>
+<form method="post" th:action="@{/register}">
   <div class="form-group">
     <label>Username
       <input class="form-control" th:field="${registerFormDTO.username}" />

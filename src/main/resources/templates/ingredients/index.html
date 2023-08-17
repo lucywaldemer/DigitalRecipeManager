@@ -6,19 +6,6 @@
 
 <br><br><br><br><br><br>
 
-<form method="post" style="max-width:600px;">
-<div class="form-group">
-    <label th:for="name">Ingredient Name</label>
-    <input class="form-control" th:field="${ingredient.name}" />
-    <span th:errors="${ingredient.name}" class="error"></span>
-</div>
-
-
-<input type="submit" value="Add Ingredient" />
-</form>
-
-<br>
-
 <table class="table table-striped">
     <thead>
 
@@ -34,12 +21,7 @@
 
         <td th:text="${ingredient.name}"></td>
 
-
-
-
-
         <td>
-
 
             <a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}">Edit</a>
 
@@ -47,6 +29,9 @@
 
     </tr>
 </table>
+
+<a class="nav-link" th:href="@{/ingredients/add}"><button type="button" class="btn btn-danger">Add New Ingredient</button></a>
+
 
 
 </body>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+
+<br><br><br><br><br><br>
+
+<form method="post" th:action="@{/ingredients/edit}">
+    <input type="hidden" th:value="${ingredient.id}" name="ingredientId" />
+
+<div class="form-group">
+
+    <label th:for="name">Ingredient Name</label>
+    <input class="form-control" th:field="${ingredient.name}" />
+    <span th:errors="${ingredient.name}" class="error"></span>
+</div>
+
+
+<input type="submit" value="Edit Ingredient" />
+</form>
+
+
+
+
+</body>
+</html>

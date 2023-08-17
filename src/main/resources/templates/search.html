@@ -1,27 +1,110 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org/">-->
+<!--<head th:replace="fragments :: head"></head>-->
+<!--<body>-->
+
+<!--&lt;!&ndash; search form &ndash;&gt;-->
+<!--<form th:action="@{/search}" th:object="${searchForm}" method="post">-->
+<!--  <label for="ingredient">Ingredient:</label>-->
+<!--  <input type="text" id="ingredient" th:field="*{ingredient}" />-->
+
+<!--  <label for="diet">Diet:</label>-->
+<!--  <input type="text" id="diet" th:field="*{diet}" />-->
+
+<!--  <label for="title">Title:</label>-->
+<!--  <input type="text" id="title" th:field="*{title}" />-->
+
+<!--  <label for="cookingTime">Cooking Time:</label>-->
+<!--  <input type="number" id="cookingTime" th:field="*{cookingTime}" />-->
+
+<!--  <label for="cuisineType">Cuisine Type:</label>-->
+<!--  <input type="text" id="cuisineType" th:field="*{cuisineType}" />-->
+
+<!--  <button type="submit">Search</button>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head th:replace="fragments :: head">
+</head>
 <body>
 
-<!-- search form -->
-<form th:action="@{/search}" th:object="${searchForm}" method="post">
-  <label for="ingredient">Ingredient:</label>
-  <input type="text" id="ingredient" th:field="*{ingredient}" />
+<div th:replace="fragments :: page-header"></div>
 
-  <label for="diet">Diet:</label>
-  <input type="text" id="diet" th:field="*{diet}" />
+<div class="container body-content">
 
-  <label for="title">Title:</label>
-  <input type="text" id="title" th:field="*{title}" />
+  <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-  <label for="cookingTime">Cooking Time:</label>
-  <input type="number" id="cookingTime" th:field="*{cookingTime}" />
+  <form th:action="@{/search/results}" method = "post">
+    <h2>Search by:</h2>
 
-  <label for="cuisineType">Cuisine Type:</label>
-  <input type="text" id="cuisineType" th:field="*{cuisineType}" />
+    <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
 
-  <button type="submit">Search</button>
-</form>
+    </p>
+
+    <p>
+      <label for="searchTerm">Keyword:</label>
+      <input type="text" name="searchTerm" id="searchTerm" />
+    </p>
+
+    <input type="submit" value="Search" />
+  </form>
+
+  <hr />
+
+
+  <table class="recipe">
+    <tr th:each="ingredient : ${ingredients}">
+      <td>
+        <p>
+          Ingredient:
+          <a th:href="@{'/view/' + ${ingredient.id}}" th:text="${ingredient.id}"></a>
+        </p>
+        <p th:text="${'Name: ' + ingredient.name}"></p>
+        <p>
+          Meal Type:
+          <a th:href="@{'/recipe/view/' + ${recipe.mealType.id}}" th:text="${recipe.mealType.name}"></a>
+        </p>
+        <p>
+          Cooking Time:
+          <a th:href="@{'/recipe/view/' + ${recipe.cookingTime.id}}" th:text="${recipe.cookingTime.name}"></a>
+        </p>
+        <p>
+          Cuisine Type:
+          <a th:href="@{'/recipe/view/' + ${recipe.cuisineType.id}}" th:text="${recipe.cuisineType.name}"></a>
+        </p>
+        <p>
+          Diet Type:
+          <a th:href="@{'/recipe/view/' + ${recipe.dietType.id}}" th:text="${recipe.dietType.name}"></a>
+        </p>
+        <p>
+          <!--          Cooking Time:-->
+          <!--        <ul th:each="skill : ${job.skills}">-->
+          <!--          <li>-->
+          <!--            <a th:href="@{'/skills/view/' + ${skill.id}}" th:text="${skill.name}"></a>-->
+          <!--          </li>-->
+          <!--        </ul>-->
+          <!--        </p>-->
+
+      </td>
+    </tr>
+  </table>
+
+</div>
 
 </body>
 </html>
