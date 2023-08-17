@@ -1,6 +1,8 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -34,6 +36,7 @@ public class User extends AbstractEntity {
     }
 
     public boolean isMatchingPassword(String password) {
+
         return encoder.matches(password, pwHash);
     }
 }

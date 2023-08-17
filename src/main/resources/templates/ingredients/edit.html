@@ -4,6 +4,8 @@
 <body class="container">
 <header th:replace="fragments :: header"></header>
 
+<br><br><br><br><br><br>
+
 <form method="post" th:action="@{/ingredients/edit}">
     <input type="hidden" th:value="${ingredient.id}" name="ingredientId" />
 
