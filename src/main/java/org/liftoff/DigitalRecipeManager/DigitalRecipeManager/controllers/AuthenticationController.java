@@ -86,11 +86,10 @@ public class AuthenticationController {
 
     @GetMapping("/login")
     public String displayLoginForm(Model model) {
-        model.addAttribute(new LoginFormDTO());
+        model.addAttribute("loginFormDTO", new LoginFormDTO());
         model.addAttribute("title", "Log In");
         return "login";
     }
-// GET 500 error An error happened during template parsing (template: "class path resource [templates/login.html]"
     @PostMapping("/login")
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,

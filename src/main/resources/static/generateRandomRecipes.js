@@ -13,17 +13,17 @@ window.addEventListener("load", function(){
         let myHTML= `
         <div class="recipe">
 
-        // firstName = name (recipe title)
+        // firstName = strMeal (recipe title)
         // lastName = description
         // hours in space = cookingTime
-        // active = DietType
+        // active = strTags
         // skills = instructions
 
        <div class="bio">
-          <h3>${response[i].name} ${response[i].description}</h3>
+          <h3>${response[i].strMeal} ${response[i].description}</h3>
           <ul>
              <li>Cooking Time: ${response[i].cookingTime}</li>
-             <li>Diet Type:${response[i].DietType}</li>
+             <li>Diet Type:${response[i].strTags}</li>
              <li>Instructions: ${response[i].instructions}</li>
           </ul>
        </div>
