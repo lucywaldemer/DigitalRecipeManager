@@ -36,10 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login*").permitAll()
                 .anyRequest().authenticated() // All other requests require authentication
                 .and()
-                .formLogin()
-                .loginPage("/login").permitAll() // Customize login page if needed
-                .defaultSuccessUrl("/home").permitAll()
-                .and()
+
+
+//                These lines are commented out to fix the redirect causing login to fail.
+//
+//                .formLogin()
+//                .loginPage("/login").permitAll() // Customize login page if needed
+//                .defaultSuccessUrl("/home").permitAll()
+//                .and()
                 .logout().logoutSuccessUrl("/login?logout").permitAll(); // Customize logout page if needed
 
     }
