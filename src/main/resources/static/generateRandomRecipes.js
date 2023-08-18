@@ -13,11 +13,10 @@ window.addEventListener("load", function(){
         let myHTML= `
         <div class="recipe">
 
-        // firstName = name (recipe title)
-        // lastName = description
-        // hours in space = cookingTime
-        // active = DietType
-        // skills = instructions
+        // firstName = strMeal
+        // lastName = strCategory
+        // image = stMealThumb
+
 
        <div class="bio">
           <h3>${response[i].name} ${response[i].description}</h3>
