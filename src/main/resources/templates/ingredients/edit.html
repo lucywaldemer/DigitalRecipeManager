@@ -4,18 +4,20 @@
 <body class="container">
 <header th:replace="fragments :: header"></header>
 
-<form method="post" th:action="@{/ingredients/edit}">
-  <input type="hidden" th:value="${ingredient.id}" name="ingredientId" />
+<br><br><br><br><br><br>
 
-  <div class="form-group">
+<form method="post" th:action="@{/ingredients/edit}">
+    <input type="hidden" th:value="${ingredient.id}" name="ingredientId" />
+
+<div class="form-group">
 
     <label th:for="name">Ingredient Name</label>
     <input class="form-control" th:field="${ingredient.name}" />
     <span th:errors="${ingredient.name}" class="error"></span>
-  </div>
+</div>
 
 
-  <input type="submit" value="Edit Ingredient" />
+<input type="submit" value="Edit Ingredient" />
 </form>
 
 
