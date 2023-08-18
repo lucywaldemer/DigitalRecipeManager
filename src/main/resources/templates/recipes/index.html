@@ -6,52 +6,49 @@
 
 <header th:replace="fragments :: header"></header>
 
+<br><br><br><br><br><br>
+
 <table class="table table-striped">
     <thead>
 
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Description</th>
-        <!--th>Contact Email</th-->
-        <th>Meal Type</th>
-        <th>Cuisine Type</th>
-        <th>Diet Type</th>
-        <th>Ingredients</th>
-        <th>Cooking Time</th>
-        <th>Instructions</th>
-        <th>Created By</th>
-        <th>Actions</th>
+        <th>Edit</th>
 
     </tr>
     </thead>
     <tr th:each="recipe : ${recipes}">
         <td th:text="${recipe.id}"></td>
-        <td th:text="${recipe.name}"></td>
-        <td th:text="${recipe.description}"></td>
-        <!--td th:text="${recipe.contactEmail}"></td-->
-        <td th:text="${recipe.mealType.displayMealName}"></td>
-        <td th:text="${recipe.cuisineType.displayCuisineName}"></td>
-        <td th:text="${recipe.dietType.displayDietName}"></td>
 
-        <td>
-            <p th:each="ingredient : ${recipe.ingredients}">
-
-                        <span th:text="${ingredient.name}"></span>
-
-            </p>
-        </td>
-      
-        <td th:text="${recipe.cookingTime}"></td>
-        <td th:text="${recipe.instructions}"></td>
-        <td th:text="${recipe.createdBy}"></td>
-
+        <td><a th:href="@{/recipes/view/{id}(id=${recipe.id})}" th:text="${recipe.name}"></a></td>
         <td>
 
             <a th:href="@{/recipes/edit/{id}(id=${recipe.id})}">Edit</a>
+
         </td>
+
     </tr>
 </table>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+
+        </div>
+        <div class="col-sm">
+
+        </div>
+        <div class="col-sm">
+            <a class="nav-link" th:href="@{/recipes/create}"><button type="button" class="btn btn-success">Add New Recipe</button></a>
+<br>
+            <a class="nav-link" th:href="@{/recipes/delete}"><button type="button" class="btn btn-danger">Delete Recipes</button></a>
+
+        </div>
+    </div>
+</div>
+
+<!--<span th:text="${session.usernameSession}"></span>-->
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <title>Register</title>
-<form method="post">
+<form method="post" th:action="@{/register}">
   <div class="form-group">
     <label>Username
       <input class="form-control" th:field="${registerFormDTO.username}" />

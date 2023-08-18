@@ -4,28 +4,30 @@
 <body class="container">
 <header th:replace="fragments :: header"></header>
 
+<br><br><br><br><br><br>
+
 <table class="table table-striped">
-  <thead>
+    <thead>
 
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Edit</th>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Edit</th>
 
-  </tr>
-  </thead>
-  <tr th:each="ingredient : ${ingredients}">
-    <td th:text="${ingredient.id}"></td>
+    </tr>
+    </thead>
+    <tr th:each="ingredient : ${ingredients}">
+        <td th:text="${ingredient.id}"></td>
 
-    <td th:text="${ingredient.name}"></td>
+        <td th:text="${ingredient.name}"></td>
 
-    <td>
+        <td>
 
-      <a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}">Edit</a>
+            <a th:href="@{/ingredients/edit/{id}(id=${ingredient.id})}">Edit</a>
 
-    </td>
+        </td>
 
-  </tr>
+    </tr>
 </table>
 
 <a class="nav-link" th:href="@{/ingredients/add}"><button type="button" class="btn btn-danger">Add New Ingredient</button></a>
