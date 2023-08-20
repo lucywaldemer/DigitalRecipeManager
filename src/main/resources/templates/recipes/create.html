@@ -6,7 +6,7 @@
 <body class="container">
 
 <header th:replace="fragments :: header"></header>
-
+<br><br><br><br><br><br>
 <script>
     $(document).ready(function () {
     let counter = 0;
@@ -55,6 +55,8 @@
 
 <form method="post">
 
+    <input type="hidden" th:field="${recipe.userId}">
+
     <div class="form-group">
         <label>Name
             <input th:field="${recipe.name}" class="form-control"
@@ -71,13 +73,6 @@
         <p class="error"    th:errors="${recipe.description}"></p>
     </div>
     <br>
-
-    <!--div class="form-group">
-        <label>Contact Email
-            <input th:field="${recipe.contactEmail}" class="form-control">
-        </label>
-        <p class="error"    th:errors="${recipe.contactEmail}"></p>
-    </div-->
 
 <div class="row">
     <div class="col-3">
@@ -198,13 +193,13 @@
         <p class="error"    th:errors="${recipe.instructions}"></p>
     </div>
 
-    <div class="form-group">
-        <label>Created By
-            <input th:field="${recipe.createdBy}" class="form-control"
-            placeholder="Please enter created by..." size="60px"/>
-        </label>
-        <p class="error"    th:errors="${recipe.createdBy}"></p>
-    </div>
+<!--    <div class="form-group">-->
+<!--        <label>Created By-->
+<!--            <input th:field="${recipe.createdBy}" class="form-control"-->
+<!--            placeholder="Please enter created by..." size="60px" />-->
+<!--        </label>-->
+<!--        <p class="error"    th:errors="${recipe.createdBy}"></p>-->
+<!--    </div>-->
 
 </div>
     <br>
