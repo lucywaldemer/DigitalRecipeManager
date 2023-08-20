@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head">
 
@@ -7,13 +6,17 @@
     <meta name="viewport" content="width=device-width">
     <title>Homepage</title>
 
-<!--    <link rel="stylesheet" type="text/css" href="@{src/main/resources/static/style}" />-->
+        <link rel="stylesheet" type="text/css" href="@{src/main/resources/static/style}" />
 
 </head>
 <body>
-<!--<script th:src="@{/script.js}"></script>-->
-<!--<h1 align="center">My Recipe Manager Homepage</h1>-->
-<!--<p th:text="'Welcome, ' + ${username}"></p>-->
+<script th:src="@{/script.js}"></script>
+
+<h1 align="center">Recipe Manager </h1>
+=======
+<h1 align="center">My Recipe Manager Homepage</h1>
+
+<p th:text="'Welcome, ' + ${username}"></p>
 <div sec:authorize="isAuthenticated()">
     Authenticated as <span sec:authentication="name"></span></div>
 <div id="container">
@@ -26,7 +29,7 @@
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5" src="/img/avataaars.svg" alt="..." />
         <!-- Masthead Heading-->
-        <h1 class="masthead-heading text-uppercase mb-0">Recipe Manager</h1>
+        <h1 class="masthead-heading text-uppercase mb-0">Digital Recipe Manager</h1>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -43,12 +46,25 @@
         </div>
 
         <input type="text" class="form-control form-rounded" placeholder="Please enter keywords for search...">
+        <!-- random recipe generator -->
+        <!-- random recipe generator -->
+        <div class="content">
+            <section class="featured-recipe">
+                <!-- Display the random recipe details -->
+                <h2>Featured Recipe</h2>
+                <div class="recipe-card">
+                    <img th:src="${randomRecipe.strMealThumb}" alt="Recipe Image">
+                    <h3 th:text="${randomRecipe.strMeal}"></h3>
+                    <p th:text="${randomRecipe.strInstructions}"></p>
+                    <p th:text="${randomRecipe.strCategory}"></p>
+                    <p th:text="${randomRecipe.strTags}"></p>
+                    <p th:text="${randomRecipe.strIngredients}"></p>
+                </div>
+            </section>
+        </div>
 
 
     </div>
 </header>
-
 </body>
 </html>
-
-

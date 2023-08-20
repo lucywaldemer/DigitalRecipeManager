@@ -114,20 +114,20 @@
 ////}
 
 // THE ABOVE CODE WAS COMMENTED OUT, THE BELOW CODE WAS UNCOMMENTED
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers( "/register").permitAll() // Whitelist the register page for unauthenticated access
-                .antMatchers("/styles/**").permitAll()
-                .antMatchers("/login*").permitAll()
-                .anyRequest().authenticated() // All other requests require authentication
-                .and()
-
+//@Configuration
+//@EnableWebSecurity
+//public class SecurityConfig extends WebSecurityConfigurerAdapter {
+//
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeRequests()
+//                .antMatchers( "/register").permitAll() // Whitelist the register page for unauthenticated access
+//                .antMatchers("/styles/**").permitAll()
+//                .antMatchers("/login*").permitAll()
+//                .anyRequest().authenticated() // All other requests require authentication
+//                .and()
+//
 
 //                These lines are commented out to fix the redirect causing login to fail.
 //
@@ -135,10 +135,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .loginPage("/login").permitAll() // Customize login page if needed
 //                .defaultSuccessUrl("/home").permitAll()
 //                .and()
-                .logout().logoutSuccessUrl("/login?logout").permitAll(); // Customize logout page if needed
-
-    }
-}
+//                .logout().logoutSuccessUrl("/login?logout").permitAll(); // Customize logout page if needed
+//
+//    }
+//}
 //Specify the URL for registration:
 //In the above configuration class, we've used .antMatchers("/register").permitAll() to allow unauthenticated access to the /register URL. You can replace /register with the actual URL path of your registration page.
 //

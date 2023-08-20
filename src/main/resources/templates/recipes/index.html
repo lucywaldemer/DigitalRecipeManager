@@ -14,6 +14,7 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Created By</th>
         <th>Edit</th>
 
     </tr>
@@ -22,10 +23,13 @@
         <td th:text="${recipe.id}"></td>
 
         <td><a th:href="@{/recipes/view/{id}(id=${recipe.id})}" th:text="${recipe.name}"></a></td>
+
+
+        <td th:text="${recipe.createdBy}"></td>
         <td>
-
-            <a th:href="@{/recipes/edit/{id}(id=${recipe.id})}">Edit</a>
-
+            <span th:if="${session.user == recipe.userId}">
+                <a th:href="@{/recipes/edit/{id}(id=${recipe.id})}">Edit</a>
+            </span>
         </td>
 
     </tr>

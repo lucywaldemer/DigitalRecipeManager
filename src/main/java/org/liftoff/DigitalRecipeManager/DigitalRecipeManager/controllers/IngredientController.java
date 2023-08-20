@@ -19,10 +19,12 @@ public class IngredientController {
     IngredientRepository ingredientRepository;
     @Autowired
     private RecipeService recipeService;
-    @GetMapping("/all")
+    /*@GetMapping("/all")
     public Ingredient[] getAllIngredients() {
         return recipeService.findAllIngredients();
     }
+
+     */
     @GetMapping("add")
 
     public String displayAddIngredientForm(Model model) {
