@@ -1,6 +1,10 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,8 +19,11 @@ public class Recipe extends AbstractEntity  {
     @NotBlank(message = "Description is required!")
     private String description;
 
-    @ManyToMany
-    private List<Ingredient> ingredients;
+    //@Email(message = "Invalid email.Try again!")
+    //@NotBlank(message = "Email is required!")
+    //private String contactEmail;
+    @OneToMany(mappedBy = "recipe")
+    private List<RecipeMeasurement> ingredients;
 
     private String mealType;
     private String dietType;
@@ -31,8 +38,9 @@ public class Recipe extends AbstractEntity  {
     private String createdBy;
     private String measurement;
 
-    private int userId;
-    public Recipe(String name, String description, List<Ingredient>ingredients,
+
+    public Recipe(String name, String description, List<RecipeMeasurement>ingredients,
+
                   MealType mealType, DietType dietType,CuisineType cuisineType,
                   int cookingTime, String instructions, String createdBy, String measurement, int userId) {
         this.name = name;
@@ -92,12 +100,12 @@ public class Recipe extends AbstractEntity  {
         this.dietType = String.valueOf(dietType);
     }
 
-    public List<Ingredient> getIngredients() {
+    public List<RecipeMeasurement> getIngredients() {
 
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(List<RecipeMeasurement> ingredients) {
         this.ingredients = ingredients;
     }
 
