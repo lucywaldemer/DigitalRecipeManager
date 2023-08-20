@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width">
     <title>Homepage</title>
 
-    <!--    <link rel="stylesheet" type="text/css" href="@{src/main/resources/static/style}" />-->
+        <link rel="stylesheet" type="text/css" href="@{src/main/resources/static/style}" />
 
 </head>
 <body>
 <script th:src="@{/script.js}"></script>
+
 <h1 align="center">Recipe Manager </h1>
+=======
+<h1 align="center">My Recipe Manager Homepage</h1>
+
 <p th:text="'Welcome, ' + ${username}"></p>
 <div sec:authorize="isAuthenticated()">
     Authenticated as <span sec:authentication="name"></span></div>
