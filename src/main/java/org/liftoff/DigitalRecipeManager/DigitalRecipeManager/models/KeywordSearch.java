@@ -19,22 +19,26 @@ public class KeywordSearch {
     }
 
     private boolean containsKeyword(Recipe recipe, String keyword) {
-        String lowerCaseKeyword = keyword.toLowerCase();
+        String name = recipe.getName().toLowerCase();
+//        String description = recipe.getDescription().toLowerCase();
+        String mealType = recipe.getMealType().toString().toLowerCase();
+        String dietType = recipe.getDietType().toString().toLowerCase();
+        String cuisineType = recipe.getCuisineType().toString().toLowerCase();
+        String ingredients = getIngredientsAsString(recipe.getIngredients()).toLowerCase();
 
-        return recipe.getName().toLowerCase().contains(lowerCaseKeyword) ||
-                recipe.getDietType().toLowerCase().contains(lowerCaseKeyword) ||
-                recipe.getDescription().toLowerCase().contains(lowerCaseKeyword) ||
-                recipe.getMealType().toLowerCase().contains(lowerCaseKeyword) ||
-                recipe.getCuisineType().toLowerCase().contains(lowerCaseKeyword);
-//                containsKeywordInIngredients(recipe, lowerCaseKeyword);
+        return name.contains(keyword) ||
+//                description.contains(keyword) ||
+                mealType.contains(keyword) ||
+                dietType.contains(keyword) ||
+                cuisineType.contains(keyword) ||
+                ingredients.contains(keyword);
     }
 
-//    private boolean containsKeywordInIngredients(Recipe recipe, String keyword) {
-//        for (Ingredient ingredients : recipe.getIngredients()) {
-//            if (ingredients.split()(keyword)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    private String getIngredientsAsString(List<Ingredient> ingredients) {
+        StringBuilder builder = new StringBuilder();
+        for (Ingredient ingredient : ingredients) {
+            builder.append(ingredient.getName()).append(" ");
+        }
+        return builder.toString();
+    }
 }
