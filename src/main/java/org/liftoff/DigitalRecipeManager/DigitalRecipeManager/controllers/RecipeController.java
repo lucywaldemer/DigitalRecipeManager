@@ -31,7 +31,19 @@ public class RecipeController {
 
      */
     @Autowired
+
     AuthenticationController authenticationController;
+
+    public RecipeController(RecipeService recipeService) {
+        this.recipeService = recipeService;
+    }
+
+    @GetMapping("/recipe")
+    public Recipe getRecipeByName(@RequestParam String name) {
+        return recipeService.searchRecipeByName(name);
+    }
+
+
     @GetMapping
     public String displayAllRecipes(Model model) {
         model.addAttribute("title", "All Recipes");

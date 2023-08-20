@@ -11,7 +11,11 @@
 </head>
 <body>
 <script th:src="@{/script.js}"></script>
+
+<h1 align="center">Recipe Manager </h1>
+=======
 <h1 align="center">My Recipe Manager Homepage</h1>
+
 <p th:text="'Welcome, ' + ${username}"></p>
 <div sec:authorize="isAuthenticated()">
     Authenticated as <span sec:authentication="name"></span></div>
@@ -42,10 +46,25 @@
         </div>
 
         <input type="text" class="form-control form-rounded" placeholder="Please enter keywords for search...">
+        <!-- random recipe generator -->
+        <!-- random recipe generator -->
+        <div class="content">
+            <section class="featured-recipe">
+                <!-- Display the random recipe details -->
+                <h2>Featured Recipe</h2>
+                <div class="recipe-card">
+                    <img th:src="${randomRecipe.strMealThumb}" alt="Recipe Image">
+                    <h3 th:text="${randomRecipe.strMeal}"></h3>
+                    <p th:text="${randomRecipe.strInstructions}"></p>
+                    <p th:text="${randomRecipe.strCategory}"></p>
+                    <p th:text="${randomRecipe.strTags}"></p>
+                    <p th:text="${randomRecipe.strIngredients}"></p>
+                </div>
+            </section>
+        </div>
 
 
     </div>
 </header>
-
 </body>
 </html>
