@@ -16,19 +16,18 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/search")
 public class SearchController {
 
     @Autowired
     public RecipeRepository recipeRepository;
 
-    @RequestMapping("search")
+    @RequestMapping("/search")
     public String displaySearchForm(Model model) {
         model.addAttribute("searchForm", new SearchFormDTO());
         return "search";
     }
 
-    @PostMapping("search_results")
+    @PostMapping("/search_results")
     public String processSearchByTerm(@RequestParam String searchTerm, Model model) {
         List<Recipe> allRecipes = (List<Recipe>) recipeRepository.findAll(); // Retrieve all recipes
 
