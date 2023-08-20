@@ -19,11 +19,22 @@ public class KeywordSearch {
     }
 
     private boolean containsKeyword(Recipe recipe, String keyword) {
-        return recipe.getName().toLowerCase().contains(keyword) ||
-                recipe.getDietType().toLowerCase().contains(keyword) ||
-                recipe.getDescription().toLowerCase().contains(keyword) ||
-                recipe.getMealType().toLowerCase().contains(keyword) ||
-                recipe.getCuisineType().toLowerCase().contains(keyword) ||
-                recipe.getIngredients().toArray().toString().toLowerCase().contains(keyword);
+        String lowerCaseKeyword = keyword.toLowerCase();
+
+        return recipe.getName().toLowerCase().contains(lowerCaseKeyword) ||
+                recipe.getDietType().toLowerCase().contains(lowerCaseKeyword) ||
+                recipe.getDescription().toLowerCase().contains(lowerCaseKeyword) ||
+                recipe.getMealType().toLowerCase().contains(lowerCaseKeyword) ||
+                recipe.getCuisineType().toLowerCase().contains(lowerCaseKeyword);
+//                containsKeywordInIngredients(recipe, lowerCaseKeyword);
     }
+
+//    private boolean containsKeywordInIngredients(Recipe recipe, String keyword) {
+//        for (Ingredient ingredients : recipe.getIngredients()) {
+//            if (ingredients.split()(keyword)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }
