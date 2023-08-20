@@ -1,73 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
-<body>
+  <html xmlns:th="http://www.thymeleaf.org/">
+  <head>
+    <title>Search by Term</title>
+  </head>
+  <body>
 
-<div th:replace="fragments :: page-header"></div>
+  <div class="container">
+    <h2>Search by Term</h2>
+    <form th:action="@{/search/search_term}" method="post">
+      <input type="text" name="searchTerm" placeholder="Enter search term" />
+      <button type="submit">Search</button>
+    </form>
+  </div>
 
-<div class="container body-content">
-
-  <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
-
-  <form th:action="@{/search/search}" method = "post">
-    <h2>Search by:</h2>
-
-    <p>
-            <span th:each="recipeColumn : ${recipeColumns}">
-                <input
-                        type="radio"
-                        name="searchType"
-                        th:id="${recipe.id}"
-                        th:value="${recipeColumn.key}"
-                        th:checked="${recipeColumn.key == 'all'}"/>
-                <label th:for="${recipeColumn.key}" th:text="${recipeColumn.value}"></label>
-            </span>
-
-    </p>
-
-    <p>
-      <label for="searchTerm">Keyword:</label>
-      <input type="text" name="searchTerm" id="searchTerm" />
-    </p>
-
-    <input type="submit" value="Search" />
-  </form>
-
-  <hr />
-
-
-  <table class="recipe">
-    <tr th:each="recipe : ${recipes}">
-      <td>
-        <p>
-          Ingredient:
-          <a th:href="@{'/view/' + ${ingredient.id}}" th:text="${ingredient.id}"></a>
-        </p>
-        <p th:text="${'Name: ' + ingredient.name}"></p>
-        <p>
-          Meal Type:
-          <a th:href="@{'/recipe/view/' + ${recipe.mealType.id}}" th:text="${recipe.mealType.name}"></a>
-        </p>
-        <p>
-          Cooking Time:
-          <a th:href="@{'/recipe/view/' + ${recipe.cookingTime.id}}" th:text="${recipe.cookingTime.name}"></a>
-        </p>
-        <p>
-          Cuisine Type:
-          <a th:href="@{'/recipe/view/' + ${recipe.cuisineType.id}}" th:text="${recipe.cuisineType.name}"></a>
-        </p>
-        <p>
-          Diet Type:
-          <a th:href="@{'/recipe/view/' + ${recipe.dietType.id}}" th:text="${recipe.dietType.name}"></a>
-        </p>
-        <p>
-
-      </td>
-    </tr>
-  </table>
-
-</div>
-
-</body>
-</html>
+  </body>
+  </html>

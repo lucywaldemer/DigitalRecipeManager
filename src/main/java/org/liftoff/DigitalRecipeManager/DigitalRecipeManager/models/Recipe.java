@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.validation.constraints.Email;
 import java.util.List;
 
 @Entity
@@ -19,9 +18,9 @@ public class Recipe extends AbstractEntity  {
     @ManyToMany
     private List<Ingredient> ingredients;
 
-    private MealType mealType;
-    private DietType dietType;
-    private CuisineType cuisineType;
+    private String mealType;
+    private String dietType;
+    private String cuisineType;
     @NotNull(message= "Cooking time is required!")
     private int cookingTime;
     @Size(min=10, max=500, message= "instructions must be between 10 and 500 characters")
@@ -40,9 +39,9 @@ public class Recipe extends AbstractEntity  {
         this.description = description;
         this.ingredients = ingredients;
 //        this.user = user;
-        this.mealType = mealType;
-        this.cuisineType = cuisineType;
-        this.dietType = dietType;
+        this.mealType = String.valueOf(mealType);
+        this.cuisineType = String.valueOf(cuisineType);
+        this.dietType = String.valueOf(dietType);
         this.cookingTime = cookingTime;
         this.instructions = instructions;
         this.createdBy = createdBy;
@@ -69,28 +68,28 @@ public class Recipe extends AbstractEntity  {
     }
 
 
-    public MealType getMealType() {
+    public String getMealType() {
         return mealType;
     }
 
     public void setMealType(MealType mealType) {
-        this.mealType = mealType;
+        this.mealType = String.valueOf(mealType);
     }
 
-    public CuisineType getCuisineType() {
+    public String getCuisineType() {
         return cuisineType;
     }
 
     public void setCuisineType(CuisineType cuisineType) {
-        this.cuisineType = cuisineType;
+        this.cuisineType = String.valueOf(cuisineType);
     }
 
-    public DietType getDietType() {
+    public String getDietType() {
         return dietType;
     }
 
     public void setDietType(DietType dietType) {
-        this.dietType = dietType;
+        this.dietType = String.valueOf(dietType);
     }
 
     public List<Ingredient> getIngredients() {

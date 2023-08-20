@@ -3,7 +3,9 @@
 <head th:replace="fragments :: head"></head>
 <body>
 
-<!-- display search results -->
+<!-- display search results for search term -->
+<h2>Search Results for Term: <span th:text="${searchTerm}"></span></h2>
+
 <table>
     <tr>
         <th>Title</th>
@@ -14,7 +16,7 @@
     </tr>
     <tr th:each="recipe : ${searchResults}">
         <td th:text="${recipe.title}"></td>
-        <td th:text="${recipe.ingredient}"></td>
+        <td th:text="${recipe.ingredients}"></td>
         <td th:text="${recipe.diet}"></td>
         <td th:text="${recipe.cookingTime}"></td>
         <td th:text="${recipe.cuisineType}"></td>

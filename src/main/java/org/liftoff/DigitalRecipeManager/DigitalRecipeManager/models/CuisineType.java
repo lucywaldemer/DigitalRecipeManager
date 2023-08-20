@@ -24,4 +24,5 @@ public enum CuisineType {
     public String getDisplayCuisineName() {
         return displayCuisineName;
     }
+
 }
