@@ -145,7 +145,7 @@
     <div class="form-group">
         <label>Created By
             <input th:field="${recipe.createdBy}" class="form-control"
-                   placeholder="Please enter created by..."/>
+                   readonly />
         </label>
         <p class="error"    th:errors="${recipe.createdBy}"></p>
     </div>
