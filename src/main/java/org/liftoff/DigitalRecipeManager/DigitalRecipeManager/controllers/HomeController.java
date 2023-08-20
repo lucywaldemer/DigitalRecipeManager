@@ -1,4 +1,4 @@
-<
+
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.UserRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.User;
