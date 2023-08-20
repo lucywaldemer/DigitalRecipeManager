@@ -1,7 +1,6 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,11 +15,10 @@ public class Recipe extends AbstractEntity  {
     @Size(max=500, message= "Description is too long!")
     @NotBlank(message = "Description is required!")
     private String description;
-    //@Email(message = "Invalid email.Try again!")
-    //@NotBlank(message = "Email is required!")
-    //private String contactEmail;
+
     @ManyToMany
     private List<Ingredient> ingredients;
+
     private MealType mealType;
     private DietType dietType;
     private CuisineType cuisineType;
@@ -29,18 +27,19 @@ public class Recipe extends AbstractEntity  {
     @Size(min=10, max=500, message= "instructions must be between 10 and 500 characters")
     @NotBlank(message= "Instructions is required!")
     private String instructions;
-    @Size(min=3, max=50)
-    @NotBlank(message= "Required!")
+//    @Size(min=3, max=50)
+//    @NotBlank(message= "Required!")
     private String createdBy;
     private String measurement;
 
+    private int userId;
     public Recipe(String name, String description, List<Ingredient>ingredients,
                   MealType mealType, DietType dietType,CuisineType cuisineType,
-                  int cookingTime, String instructions, String createdBy, String measurement ) {
+                  int cookingTime, String instructions, String createdBy, String measurement, int userId) {
         this.name = name;
         this.description = description;
-        //this.contactEmail = contactEmail;
         this.ingredients = ingredients;
+//        this.user = user;
         this.mealType = mealType;
         this.cuisineType = cuisineType;
         this.dietType = dietType;
@@ -48,6 +47,7 @@ public class Recipe extends AbstractEntity  {
         this.instructions = instructions;
         this.createdBy = createdBy;
         this.measurement = measurement;
+        this.userId = userId;
     }
 
     public Recipe() {}
@@ -68,13 +68,6 @@ public class Recipe extends AbstractEntity  {
         this.description = description;
     }
 
-    /*public String getContactEmail() {
-        return contactEmail;
-    }
-
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
-    }*/
 
     public MealType getMealType() {
         return mealType;
@@ -109,6 +102,14 @@ public class Recipe extends AbstractEntity  {
         this.ingredients = ingredients;
     }
 
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+
     public int getCookingTime() {
         return cookingTime;
     }
@@ -139,6 +140,14 @@ public class Recipe extends AbstractEntity  {
 
     public void setMeasurement(String measurement) {
         this.measurement = measurement;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override

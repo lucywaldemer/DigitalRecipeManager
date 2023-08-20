@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -30,6 +31,9 @@ public class RecipeController {
 
      */
     @Autowired
+
+    AuthenticationController authenticationController;
+
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
@@ -38,6 +42,7 @@ public class RecipeController {
     public Recipe getRecipeByName(@RequestParam String name) {
         return recipeService.searchRecipeByName(name);
     }
+
 
     @GetMapping
     public String displayAllRecipes(Model model) {
@@ -48,7 +53,9 @@ public class RecipeController {
 
     @GetMapping("create")
     public String displayCreateRecipeForm(Model model) {
-        model.addAttribute("title", "Create Recipe");
+
+
+
         model.addAttribute(new Recipe());
         model.addAttribute("mealTypes", MealType.values());
         model.addAttribute("cuisineTypes", CuisineType.values());
@@ -60,11 +67,21 @@ public class RecipeController {
 
     @PostMapping("create")
     public String processCreateRecipeForm(@ModelAttribute @Valid Recipe newRecipe,
-                                          Errors errors, Model model) {
+                                          Errors errors, Model model, HttpSession session) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Recipe");
             return "recipes/create";
         }
+
+        User user = authenticationController.getUserFromSession(session);
+
+        if (user!=null) {
+
+            newRecipe.setUserId(user.getId());
+            newRecipe.setCreatedBy(user.getUsername());
+
+        }
+
             recipeRepository.save(newRecipe);
             return "redirect:";
         }
