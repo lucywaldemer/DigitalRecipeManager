@@ -9,20 +9,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 
 @Controller
+@RequestMapping("search")
 public class SearchController {
 
     @Autowired
     public RecipeRepository recipeRepository;
 
-    @GetMapping("/search")
+    @GetMapping ("/search")
     public String displaySearchForm(Model model) {
         model.addAttribute("searchForm", new SearchFormDTO());
-        return "search";
+        return "search/search";
     }
 
     @PostMapping("/search")

@@ -13,11 +13,11 @@ public class RecipeMeasurement {
 
     //Join table fields
     @ManyToOne
-    @MapsId("RecipeId")
+    @MapsId("recipe_id")
     private Recipe recipe;
 
     @ManyToOne
-    @MapsId("IngredientId")
+    @MapsId("ingredient_id")
     private Ingredient ingredient;
 
     @Column
@@ -28,7 +28,9 @@ public class RecipeMeasurement {
     private Integer quantity;
 
     //Constructors
-    public RecipeMeasurement () {}
+    public RecipeMeasurement() {
+        this.id = new RecipeMeasurementId(); // Initialize the composite primary key
+    }
 
     public RecipeMeasurement (Recipe recipe, Ingredient ingredient,Measurement measurement, Integer quantity) {
         this.recipe = recipe;

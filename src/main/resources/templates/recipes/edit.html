@@ -2,6 +2,109 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
+
+<script th:inline="javascript">
+
+
+
+
+    $(document).ready(function () {
+
+    let counter = 0;
+    let itemNo = 1;
+
+    let message = /*[[ ${recipe.ingredientsJson} ]]*/;
+
+    //lets create existing ingredients
+
+    const ingredientLines = message.split("#");
+
+    for (let i = 0; i < ingredientLines.length; i++) {
+
+
+
+        const ingredientData =  ingredientLines[i].split("$");
+
+        let quantityValueForEdit = ingredientData[0];
+        let measurementValueForEdit = ingredientData[1];
+        let ingredientValueForEdit = ingredientData[2];
+
+        if (quantityValueForEdit.trim() === '')
+        {
+            continue;
+        }
+
+        let newRowForEdit = $("<tr>");
+        let colsForEdit = "";
+
+        colsForEdit += '<td>' + itemNo + '</td>';
+        colsForEdit += '<td>' + quantityValueForEdit + '</td>';
+        colsForEdit += '<td>' + measurementValueForEdit + '</td>';
+        colsForEdit += '<td>' + ingredientValueForEdit + '</td>';
+
+        colsForEdit += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+
+        newRowForEdit.append(colsForEdit);
+
+        $("table").append(newRowForEdit);
+
+        let newJsonValueForEdit = quantityValueForEdit + '$' + measurementValueForEdit + '$' + ingredientValueForEdit;
+
+        document.getElementById("ingredientsJson").value += newJsonValueForEdit + '#';
+
+        counter++;
+
+        itemNo++;
+
+    }
+
+
+    $("#addrow").on("click", function () {
+
+        let quantityValue = document.getElementById("quantityBox").value;
+        let measurement = document.getElementById("measurementBox").value;
+        let ingredient = document.getElementById("ingredientBox").value;
+
+
+        let newRow = $("<tr>");
+        let cols = "";
+
+        cols += '<td>' + itemNo + '</td>';
+        cols += '<td>' + quantityValue + '</td>';
+        cols += '<td>' + measurement + '</td>';
+        cols += '<td>' + ingredient + '</td>';
+
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+
+        newRow.append(cols);
+
+        $("table").append(newRow);
+
+        let newJsonValue = quantityValue + '$' + measurement + '$' + ingredient;
+
+        document.getElementById("ingredientsJson").value += newJsonValue + '#';
+
+        counter++;
+
+        itemNo++;
+
+        document.getElementById("quantityBox").value = '';
+        document.getElementById("measurementBox").selectedIndex = "0";
+        document.getElementById("ingredientBox").selectedIndex = "0";
+
+    });
+
+    $("table").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();
+        counter -= 1
+        itemNo--;
+    });
+});
+
+
+
+    </script>
+
 <header th:replace="fragments :: header"></header>
 
 <form method="post" th:action="@{/recipes/edit}">
@@ -25,12 +128,6 @@
         <p class="error"    th:errors="${recipe.description}"></p>
     </div>
     <br>
-    <!--div class="form-group">
-        <label>Contact Email
-            <input th:field="${recipe.contactEmail}" class="form-control">
-        </label>
-        <p class="error"    th:errors="${recipe.contactEmail}"></p>
-    </div-->
 
     <div class="row">
 
@@ -103,8 +200,16 @@
         </div>
 
         <div class="col-4">
-            <input type="text" name="ingredientBox" id="ingredientBox" class="form-control" placeholder="please enter ingredient"/>
+
+            <select id="ingredientBox" name="ingredientBox" th:field="*{ingredients}" class="form-select" >
+                <option th:each="ingredient : ${ingredients}"
+                        th:text="${ingredient.name}"
+                        th:value="${ingredient.name}">
+            </select>
+
+
         </div>
+
     </div>
 
     <div class="row"><div class="col-12"></div> </div>
@@ -133,6 +238,8 @@
 
         </tbody>
     </table>
+
+    <input type="hidden" id="ingredientsJson" name="ingredientsJson" value="0">
 
     <div class="form-group">
         <label>Instructions

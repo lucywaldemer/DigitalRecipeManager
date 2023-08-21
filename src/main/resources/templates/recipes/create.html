@@ -33,6 +33,10 @@
 
         $("table").append(newRow);
 
+        let newJsonValue = quantityValue + '$' + measurement + '$' + ingredient;
+
+        document.getElementById("ingredientsJson").value += newJsonValue + '#';
+
         counter++;
 
         itemNo++;
@@ -150,6 +154,7 @@
                         th:text="${ingredient.name}"
                         th:value="${ingredient.name}">
             </select>
+
         </div>
 
         </div>
@@ -184,6 +189,8 @@
 
         </tbody>
     </table>
+
+    <input type="hidden" id="ingredientsJson" name="ingredientsJson" value="0">
 
     <div class="form-group">
         <label>Instructions

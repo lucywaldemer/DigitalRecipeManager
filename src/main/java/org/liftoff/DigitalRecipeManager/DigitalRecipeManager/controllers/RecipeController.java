@@ -1,6 +1,7 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.IngredientRepository;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeMeasurementRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,12 +26,9 @@ public class RecipeController {
     private RecipeRepository recipeRepository;
     @Autowired
     private RecipeService recipeService;
-    /*public RecipeController(IngredientRepository ingredientRepository, RecipeService recipeService) {
-        this.ingredientRepository = ingredientRepository;
-        this.recipeService = recipeService;
-    }
 
-     */
+    @Autowired
+    private RecipeMeasurementRepository recipeMeasurementRepository;
     @Autowired
 
     AuthenticationController authenticationController;
@@ -67,13 +66,15 @@ public class RecipeController {
 
     @PostMapping("create")
     public String processCreateRecipeForm(@ModelAttribute @Valid Recipe newRecipe,
-                                          Errors errors, Model model, HttpSession session) {
+                                          Errors errors, Model model, HttpSession session,
+                                          @RequestParam String ingredientsJson) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Recipe");
             return "recipes/create";
         }
 
         User user = authenticationController.getUserFromSession(session);
+
 
         if (user!=null) {
 
@@ -82,8 +83,11 @@ public class RecipeController {
 
         }
 
-            recipeRepository.save(newRecipe);
-            return "redirect:";
+        newRecipe.setIngredientsJson((ingredientsJson));
+
+        recipeRepository.save(newRecipe);
+
+        return "redirect:";
         }
 
     @GetMapping("delete")
@@ -113,24 +117,23 @@ public class RecipeController {
         model.addAttribute("cuisineTypes", CuisineType.values());
         model.addAttribute("dietTypes", DietType.values());
         model.addAttribute("measurements", Measurement.values());
+        model.addAttribute("ingredients", ingredientRepository.findAll());
         return "recipes/edit";
     }
     @PostMapping("edit")
     public String processEditRecipeForm(int recipeId, String name, String description, MealType mealType,
-                                        CuisineType cuisineType, DietType dietType,
-                                        String ingredients, int cookingTime,
-                                        String instructions, String createdBy) {
+                                        CuisineType cuisineType, DietType dietType, int cookingTime,
+                                        String instructions, String createdBy, @RequestParam String ingredientsJson) {
         Recipe recipeToEdit = recipeRepository.findById(recipeId);
         recipeToEdit.setName(name);
         recipeToEdit.setDescription(description);
         recipeToEdit.setMealType(mealType);
         recipeToEdit.setCuisineType(cuisineType);
         recipeToEdit.setDietType(dietType);
-        //recipeToEdit.setContactEmail(contactEmail);
-        //recipeToEdit.setIngredients(ingredients);
         recipeToEdit.setCookingTime(cookingTime);
         recipeToEdit.setInstructions(instructions);
         recipeToEdit.setCreatedBy(createdBy);
+        recipeToEdit.setIngredientsJson(ingredientsJson);
 
         recipeRepository.save(recipeToEdit);
 
@@ -141,8 +144,32 @@ public class RecipeController {
     public String displayRecipeDetails(Model model, @PathVariable int recipeId) {
         Recipe  recipeToView = recipeRepository.findById(recipeId);
         String title = "View Recipe " + recipeToView.getName() + " (id=" + recipeToView.getId() + ")";
+
+        List<IngredientView> ingredientViews = new ArrayList<>();
+
+        String[] ingredientLines = recipeToView.getIngredientsJson().split("#");
+
+        for (String ingredientLine : ingredientLines){
+
+            if (!ingredientLine.trim().equals(""))
+            {
+                String[] ingredientData = ingredientLine.split("\\$");
+
+                IngredientView iv = new IngredientView();
+
+                iv.setQuantity(ingredientData[0]);
+                iv.setMeasurement(ingredientData[1]);
+                iv.setIngredient(ingredientData[2]);
+
+                ingredientViews.add(iv);
+
+            }
+        }
+
         model.addAttribute("title", title );
         model.addAttribute("recipe", recipeToView);
+        model.addAttribute("ingredientViews", ingredientViews);
+
         return "recipes/view";
     }
 
