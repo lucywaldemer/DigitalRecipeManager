@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
-
 @Controller
 @RequestMapping("recipes")
 public class RecipeController {
