@@ -13,7 +13,7 @@
 <script th:src="@{/script.js}"></script>
 
 <h1 align="center">Recipe Manager </h1>
-=======
+
 <h1 align="center">My Recipe Manager Homepage</h1>
 
 <p th:text="'Welcome, ' + ${username}"></p>
@@ -45,9 +45,11 @@
             <div class="divider-custom-line"></div>
         </div>
 
-        <input type="text" class="form-control form-rounded" placeholder="Please enter keywords for search...">
-        <!-- random recipe generator -->
-        <!-- random recipe generator -->
+        <form th:action="@{/search/search_results}" method="post">
+            <input type="text" class="form-control form-rounded" name="searchTerm" placeholder="Enter keywords for search...">
+            <button type="submit">Search</button>
+        </form>
+
         <div class="content">
             <section class="featured-recipe">
                 <!-- Display the random recipe details -->

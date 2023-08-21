@@ -3,11 +3,13 @@ package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.KeywordSearch;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.Recipe;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.RecipeRepository;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.RecipeService;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto.SearchFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -18,6 +20,8 @@ public class SearchController {
 
     @Autowired
     public RecipeRepository recipeRepository;
+
+
 
     @GetMapping ("/search")
     public String displaySearchForm(Model model) {
