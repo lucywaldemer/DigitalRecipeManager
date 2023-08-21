@@ -37,7 +37,7 @@ public class KeywordSearch {
     private String getIngredientsAsString(List<Ingredient> ingredients) {
         StringBuilder builder = new StringBuilder();
         for (Ingredient ingredient : ingredients) {
-            builder.append(ingredient.getName()).append(" ");
+            builder.append(ingredient.getName()).append(",");
         }
         return builder.toString();
     }

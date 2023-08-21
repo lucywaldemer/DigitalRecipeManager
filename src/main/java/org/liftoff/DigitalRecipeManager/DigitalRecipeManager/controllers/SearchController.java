@@ -13,6 +13,7 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping("search")
 public class SearchController {
 
     @Autowired
@@ -33,7 +34,7 @@ public class SearchController {
 
         model.addAttribute("searchResults", searchResults);
         model.addAttribute("searchTerm", searchTerm);
-        return "search_results"; // template for displaying search results
+        return "search/search_results"; // template for displaying search results
     }
 
 
