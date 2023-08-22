@@ -1,6 +1,7 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models;
 
 
+
 import javax.persistence.*;
 
 import javax.validation.constraints.NotBlank;
@@ -17,9 +18,11 @@ public class Recipe extends AbstractEntity  {
     @Size(max=500, message= "Description is too long!")
     @NotBlank(message = "Description is required!")
     private String description;
+
     @OneToMany(mappedBy = "recipe")
 
     private List<RecipeMeasurement> ingredients;
+
 
     private MealType mealType;
     private DietType dietType;
@@ -29,7 +32,7 @@ public class Recipe extends AbstractEntity  {
     @Size(min=10, max=500, message= "instructions must be between 10 and 500 characters")
     @NotBlank(message= "Instructions is required!")
     private String instructions;
-//    @Size(min=3, max=50)
+    //    @Size(min=3, max=50)
 //    @NotBlank(message= "Required!")
     private String createdBy;
     private String measurement;
@@ -49,6 +52,7 @@ public class Recipe extends AbstractEntity  {
     public Recipe(String name, String description, List<RecipeMeasurement>ingredients,
 
                   MealType mealType, DietType dietType, CuisineType cuisineType,
+
                   int cookingTime, String instructions, String createdBy, String measurement, int userId) {
         this.name = name;
         this.description = description;
@@ -107,12 +111,12 @@ public class Recipe extends AbstractEntity  {
         this.dietType = dietType;
     }
 
-    public List<RecipeMeasurement> getIngredients() {
+    public List<Ingredient> getIngredients() {
 
         return ingredients;
     }
 
-    public void setIngredients(List<RecipeMeasurement> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -169,7 +173,3 @@ public class Recipe extends AbstractEntity  {
         return name;
     }
 }
-
-
-
-

@@ -69,7 +69,7 @@ public class IngredientController {
 
     @PostMapping("add")
     public String processAddIngredientForm(@ModelAttribute @Valid Ingredient newIngredient,
-                                      Errors errors, Model model) {
+                                           Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             return "ingredients/add";
