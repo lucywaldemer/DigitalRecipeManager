@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <!-- ... (head content) ... -->
+</head>
+<body>
+<nav th:fragment="header">
+    <!-- ... (header navigation) ... -->
+</nav>
+<div class="container">
+    <h2>Edit Profile</h2>
+    <form th:action="@{/profile/{username}/edit}" th:object="${userProfile}" method="post">
+        <input type="text" th:field="*{username}" placeholder="Username" />
+        <input type="email" th:field="*{email}" placeholder="Email" />
+        <input type="text" th:field="*{bio}" placeholder="Bio" />
+        <!-- Add more fields as needed, e.g., profile picture -->
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+<!-- ... (footer content) ... -->
+</body>
+</html>

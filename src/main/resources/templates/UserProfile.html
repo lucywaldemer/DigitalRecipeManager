@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <h1>Recipe Manager Profile</h1>
+<!--    <li class="nav-item"><a class="nav-link" th:href="@{/profile/{username}/edit}(username=${session.usernameSession})">Edit Profile</a></li>-->
+    <a th:href="@{/Profile/{username}/edit(username=${userProfile.username})}">Edit Profile</a>
+
+    <form th:action="@{/profile/upload}" method="post" enctype="multipart/form-data">
+        <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+        <input type="submit" value="Upload Profile Picture">
+    </form>
+    <img id="previewImage" src="/images/profile.jpg"
+         alt="Profile Picture Preview" width="200" height="200">
+    <script>
+    //Function to update the image preview
+    function previewImage(event) {
+        var preview = document.getElementById('previewImage');
+        preview.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    // Attach the 'previewImage' function to the file input change event
+    document.getElementById('profilePicture').addEventListener('change', previewImage);
+</script>
+    <div th:if="${userProfile != null}">
+        <p><strong>Username:</strong> <span th:text="${userProfile.username}"></span></p>
+        <p><strong>Full Name:</strong><span th:text="${userProfile.fullName}"></span></p>
+        <p><strong>Bio:</strong><span th:text="${userProfile.bio}"></span></p>
+        <!-- Add more fields as needed -->
+        <!-- Use the same variable name {userProfile} as in the controller -->
+    </div>
+    <div th:unless="${userProfile != null}">
+        <p>User profile not found.</p>
+    </div>
+
+
+</head>
+<body>
+
+</body>
+</html>
