@@ -61,19 +61,14 @@
 
     <div class="col-lg">
         <p class="xs-text-4 xs-hide md-block">
-            <ul>
-                <li>2 teaspoon Olive Oil</li>
-                <li>500 gr Chicken Thighs</li>
-                <li>500 gr Green Beans</li>
-                <li>1 teaspoon salt</li>
-                <li>1 teaspoon black pepper</li>
-                <li>1/2 cup Basil Pesto</li>
 
-            </ul>
-
-
-
-
+        <table>
+        <tr th:each="ingredientView: ${ingredientViews}">
+            <td th:text="${ingredientView.quantity}" />
+            <td th:text="${ingredientView.measurement}" />
+            <td th:text="${ingredientView.ingredient}" />
+        </tr>
+    </table>
         </p>
 
     </div>
@@ -84,53 +79,6 @@
 
     </div>
 </div>
-
-
-
-<!--<table class="table table-striped">-->
-<!--    <tbody>-->
-<!--    <tr>-->
-<!--        <td>Ingredients</td>-->
-<!--        <td>Instructions</td>-->
-<!--    </tr>-->
-
-<!--    <tr>-->
-<!--        <td>To be populated</td>-->
-<!--        <td th:text="${recipe.instructions}"></td>-->
-<!--    </tr>-->
-
-<!--    <tr>-->
-<!--        <td>Meal Type</td>-->
-<!--        <td th:text="${recipe.mealType}"></td>-->
-<!--    </tr>-->
-
-<!--    <tr>-->
-<!--        <td>Cuisine Type</td>-->
-<!--        <td th:text="${recipe.cuisineType}"></td>-->
-<!--    </tr>-->
-
-<!--    <tr>-->
-<!--        <td>Diet Type</td>-->
-<!--        <td th:text="${recipe.dietType}"></td>-->
-<!--    </tr>-->
-
-<!--    <tr>-->
-<!--        <td>Cooking Time</td>-->
-<!--        <td th:text="${recipe.cookingTime}"></td>-->
-<!--    </tr>-->
-
-<!--    <tr>-->
-<!--        <td>Instructions</td>-->
-<!--        <td th:text="${recipe.instructions}"></td>-->
-<!--    </tr>-->
-
-<!--    <tr>-->
-<!--        <td>Created by</td>-->
-<!--        <td th:text="${recipe.createdBy}"></td>-->
-<!--    </tr>-->
-
-<!--    </tbody>-->
-<!--</table>-->
 
 <a class="nav-link" href="/recipes"><button type="button" class="btn btn-primary">Go Back to recipes</button></a>
 <br>

@@ -8,9 +8,9 @@ import java.util.Objects;
 //This class creates a composite primary key for the Recipe/Ingredients join table
 @Embeddable
 public class RecipeMeasurementId implements Serializable {
-    @Column
+    @Column (name="recipe_id")
     private Integer RecipeId;
-    @Column
+    @Column(name ="ingredient_id")
     private Integer IngredientId;
 
     public RecipeMeasurementId () {}
