@@ -16,20 +16,22 @@ import java.util.Set;
 @Entity
 public class User extends AbstractEntity {
     // user ID comes from AbstractEntity
-
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserProfile userProfile;
     @NotNull
     private String username;
 
     @NotNull
     private String pwHash;
-
-
-
-
-
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public User() {
+    }
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 
     public User(String username, String password) {

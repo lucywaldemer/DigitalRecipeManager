@@ -1,7 +1,9 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.UserProfileRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.UserRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.User;
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.UserProfile;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto.LoginFormDTO;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import java.util.Optional;
 public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserProfileRepository userProfileRepository;
 
     private static final String userSessionKey = "user";
 
@@ -83,7 +87,12 @@ public class AuthenticationController {
 
 
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
+        UserProfile userProfile = new UserProfile();
+        newUser.setUserProfile(userProfile);
+
         userRepository.save(newUser);
+        userProfileRepository.save(userProfile);
+
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:";
