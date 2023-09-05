@@ -70,7 +70,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/recipes">Recipes</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/ingredients">Ingredients</a></li><!-- Add a link to view the user's profile if a user is logged in -->
-                <a th:if="${session.usernameSession != null}" th:href="@{/Profile/{username}(username=${session.usernameSession})}">Profile</a>
+                <li th:if="${session.usernameSession != null}" class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{/Profile/{username}(username=${session.usernameSession})}">Profile</a></li>
                 <li th:if="${session.usernameSession == null}" class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login">Login</a></li>
                 <li th:if="${session.usernameSession != null}" class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/logout">Logout</a></li>
             </ul>
@@ -82,7 +82,7 @@
     <ul class="nav">
         <li class="nav-item"><a class="nav-link" href="/recipes">Recipes </a></li>
         <li class="nav-item"><a class="nav-link" href="/ingredients">Ingredients </a></li>
-        <li class="nav-item"><a class="nav-link" href="/UserProfile">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="/Profile">Profile</a></li>
 
 
 

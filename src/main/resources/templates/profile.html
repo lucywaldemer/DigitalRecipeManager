@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+<nav th:replace="fragments :: header"></nav>
+<h1>User Profile</h1>
+<p>User object: ${user}</p>
+<hr>
+<div class="media">
+    <img class="align-self-start mr-3" th:src="@{${user.profilePicture}}" alt="Profile Picture Image">
+    <div class="media-body">
+        <h5 class="mt-0">Recipe Manager</h5>
+
+
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-success" th:text=" 'First Name: ' + ${user.firstName}"></li>
+            <li class="list-group-item list-group-item-success" th:text=" 'Last name:' + ${user.lastName}"></li>
+            <li class="list-group-item list-group-item-success" th:text="'Bio:'+ ${user.bio}"></li>
+            <li class="list-group-item list-group-item-primary" th:text=" 'Username: ' + ${user.username}"></li>
+
+        </ul>
+
+        <br>
+        <form method="post" action="/Profile/uploadProfilePicture" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*">
+            <input type="submit" value="Upload Profile Picture">
+        </form>
+
+
+        <a class="btn btn-secondary" href="profile/picture" role="button">Change Profile Picture</a>
+        <hr>
+
+    </div>
+</div>
+<br>
+</body>
+</html>
