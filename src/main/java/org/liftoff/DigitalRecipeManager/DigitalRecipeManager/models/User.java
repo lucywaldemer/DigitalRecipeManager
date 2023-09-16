@@ -35,33 +35,29 @@ public class User extends AbstractEntity {
     public User() {
     }
 
-    public User(String username, String pwHash, String email, String profilePicture, String firstName, String lastName, String bio) {
+    public User(String username, String pwHash, String email, byte[] profilePicture, String firstName, String lastName, String bio) {
         this.username = username;
         this.pwHash = pwHash;
         this.email = email;
-        this.profilePicture = profilePicture.getBytes();
+        this.profilePicture = profilePicture;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.bio= bio;
+        this.bio = bio;
     }
 
-    //    public UserProfile getUserProfile() {
-//        return userProfile;
-//    }
-//    public void setUserProfile(UserProfile userProfile) {
-//        this.userProfile = userProfile;
-//    }
 
     public User(String username, String password) {
         this.username = username;
         this.pwHash = encoder.encode(password);
     }
 
+    public User(String username, String password, String firstName, String bio, String profilePicture) {
+        super();
+    }
+
     public String getUsername() {
         return username;
     }
-
-
 
     public boolean isMatchingPassword(String password) {
 
