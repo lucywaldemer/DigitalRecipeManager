@@ -1,5 +1,6 @@
 package org.liftoff.DigitalRecipeManager.DigitalRecipeManager.controllers;
 
+import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.UserProfileRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.data.UserRepository;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.User;
 import org.liftoff.DigitalRecipeManager.DigitalRecipeManager.models.dto.LoginFormDTO;
@@ -19,8 +20,8 @@ import java.util.Optional;
 public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
-//    @Autowired
-//    private UserProfileRepository userProfileRepository;
+    @Autowired
+    private UserProfileRepository userProfileRepository;
     private static final String userSessionKey = "user";
 
     public User getUserFromSession(HttpSession session) {
@@ -40,7 +41,6 @@ public class AuthenticationController {
 
         return user.get();
     }
-
 
 
     public static void setUserInSession(HttpSession session, User user) {
@@ -81,14 +81,20 @@ public class AuthenticationController {
             return "register";
         }
 
+        // Create a new User object
+        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
+        newUser.setFirstName(registerFormDTO.getFirstName());
+        newUser.setLastName(registerFormDTO.getLastName());
 
-
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getFirstName(), registerFormDTO.getBio(),registerFormDTO.getProfilePicture());
+        // Save the user to the repository
         userRepository.save(newUser);
-        setUserInSession(request.getSession(), newUser);
 
-        return "redirect:";
+        // Redirect after successful registration
+        return "redirect:/login"; // Modify this as needed
     }
+
+
+
 
 
     @GetMapping("/login")

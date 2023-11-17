@@ -26,10 +26,14 @@ public class User extends AbstractEntity {
     private String email;
     private String bio;
     private byte[] profilePicture;
+    @Column(name = "first_name")
     @NotNull
     private String firstName;
+
+    @Column(name = "last_name")
     @NotNull
     private String lastName;
+
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public User() {
@@ -110,4 +114,11 @@ public class User extends AbstractEntity {
         return bio;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

@@ -21,6 +21,16 @@
       <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
     </label>
   </div>
+  <div>
+    <label> First Name
+      <input class="form-control" th:field="${user.firstname}" type="text"/>
+    </label>
+  </div>
+  <div>
+    <label> Last Name
+    <input class="form-control" th:field="${user.lastname}" type="text"/>
+    </label>
+  </div>
 
   <input type="submit" class="btn btn-primary" value="Register" />
 </form>

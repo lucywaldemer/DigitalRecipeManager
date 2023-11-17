@@ -11,19 +11,7 @@
     <title th:text="'Digital Recipe Manager' + ${title == null ? '' : ' :: ' + title}">Digital Recipe Manager</title>
 
 
-    <!-- Bootstrap stylesheets and script -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link th:href="@{/css/style.css}" rel="stylesheet" />
-    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 
-    <title th:text="'Welcome to Your Digital Recipe Manager' + ${title == null ? '' : ' :: ' + title}">Digital Recipe Manager</title>
-
-
-
-    <!-- Bootstrap stylesheets and script -->
-    <!--    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-        <link th:href="@{/style.css}" rel="stylesheet" />
-        <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script> -->
     <link th:href="@{/styles/style.css}" rel="stylesheet" />
 
     <link rel="stylesheet" th:href="@{/css/styles.css}">
@@ -49,10 +37,11 @@
         <li class="nav-item"><a class="nav-link" href="/recipes">All Recipes</a></li>
         <li class="nav-item"><a class="nav-link" href="/recipes/create">Create Recipe</a></li>
         <li class="nav-item"><a class="nav-link" href="/recipes/delete">Delete Recipe</a></li>
-<!--        <li class="nav-item"><a class="nav-link" href="/recipes/search">Search</a></li>-->
+        <li class="nav-item"><a class="nav-link" href="/recipes/search">Search</a></li>
 
     </ul>
 </nav>
+</body>
 
 <body id="page-top">
 
@@ -69,8 +58,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/recipes">Recipes</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/ingredients">Ingredients</a></li><!-- Add a link to view the user's profile if a user is logged in -->
-                <li th:if="${session.usernameSession != null}" class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{/Profile/{username}(username=${session.usernameSession})}">Profile</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/ingredients">Ingredients</a></li>
                 <li th:if="${session.usernameSession == null}" class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login">Login</a></li>
                 <li th:if="${session.usernameSession != null}" class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/logout">Logout</a></li>
             </ul>
@@ -82,9 +70,9 @@
     <ul class="nav">
         <li class="nav-item"><a class="nav-link" href="/recipes">Recipes </a></li>
         <li class="nav-item"><a class="nav-link" href="/ingredients">Ingredients </a></li>
-        <li class="nav-item"><a class="nav-link" href="/Profile">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
 
-
+    </ul>
 
 
 
@@ -100,7 +88,5 @@
 
 <!--    </ul>-->
 <!--</nav>-->
-    </ul>
-</body>
 </body>
 </html>
